@@ -5,10 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DotCoinWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Margin="20"
+        Title="MainWindow" 
+        Height="450" 
+        Width="800" 
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         >
     <Grid>
-        <Frame Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Frame Grid.Row="1" Grid.Column="1" Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
