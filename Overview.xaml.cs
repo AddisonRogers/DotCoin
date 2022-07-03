@@ -15,8 +15,8 @@ namespace DotCoinWPF
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var egg = (Window.GetWindow(App.Current.MainWindow) as MainWindow).MainFrame;
-            egg.Content = new Page2();
+            var egg = (Window.GetWindow(App.Current.MainWindow) as MainWindow)?.MainFrame;
+            egg.Content = new Page2("bitcoin");
         }
     }
 }

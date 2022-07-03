@@ -62,4 +62,22 @@ public static class Fetch
 
             return null; //error checking
         }
+
+        public static async Task<string[]?> GetAllNames()
+        {
+            JsonNode? json = await GetAll();
+            if (json == null) return null;
+            
+            string?[] names = new string?[json.AsArray().Count];
+            for (int i = 0; i < json.AsArray().Count; i++)
+            {
+
+                names[i] = json[i]?["id"]?.ToString();
+
+
+            }
+
+            return names;
+        }
+            
 }

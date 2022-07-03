@@ -20,7 +20,7 @@ namespace DotCoinWPF
     /// </summary>
     public partial class Page2 : Page
     {
-        public Page2()
+        public Page2(string coin)
         {
             InitializeComponent();
         }

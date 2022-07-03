@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DotCoinWPF;
+using System.Linq;
 
 namespace DotCoinWPF
 {
@@ -24,6 +27,23 @@ namespace DotCoinWPF
         {
             InitializeComponent();
             MainFrame.Content = new Page1();
+        }
+
+        private void ButtonClick(object sender, MouseEventArgs mouseEventArgs)
+        {
+            
+            var name = (sender as ListBoxItem)?.Content.ToString();
+            mouseEventArgs.Handled = true;
+            
+        }
+        private async Task NameBox(string nameRaw) //postbox
+        {
+            var name = nameRaw.ToLower().Trim();
+            string[]? names = await DotCoinWPF.Fetch.GetAllNames();
+            if (names != null && names.Contains(name))
+            {
+                MainFrame.Content = new Page2(name);
+            }
         }
     }
 }
