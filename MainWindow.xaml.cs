@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -29,13 +28,6 @@ namespace DotCoinWPF
             MainFrame.Content = new Page1();
         }
 
-        private void ButtonClick(object sender, MouseEventArgs mouseEventArgs)
-        {
-            
-            var name = (sender as ListBoxItem)?.Content.ToString();
-            mouseEventArgs.Handled = true;
-            
-        }
         private async Task NameBox(string nameRaw) //postbox
         {
             var name = nameRaw.ToLower().Trim();
@@ -43,6 +35,15 @@ namespace DotCoinWPF
             if (names != null && names.Contains(name))
             {
                 MainFrame.Content = new Page2(name);
+            }
+        }
+
+        private void SearchBar_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                NameBox(SearchBar.Text);
+                SearchBar.Text= "";
             }
         }
     }

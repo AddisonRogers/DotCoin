@@ -9,6 +9,6 @@
       Title="Page2" Background="Aqua">
 
     <Grid>
-        <TextBlock Text="EGG"/>
+        <TextBlock Name="Noc" Text="EGG"/>
     </Grid>
 </Page>

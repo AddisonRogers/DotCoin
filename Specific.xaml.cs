@@ -22,7 +22,9 @@ namespace DotCoinWPF
     {
         public Page2(string coin)
         {
+            
             InitializeComponent();
+            Noc.Text = coin;
         }
     }
 }
