@@ -35,7 +35,28 @@ namespace DotCoinWPF
             
             var coin = await Fetch.Get(name);
             Title = "DotCoin | "+name+" "+coin?["priceUsd"]?.ToString();
-            SymbolBox.Text = coin?["symbol"]?.ToString();
+            SymbolBox.Text = "Symbol : "+coin?["symbol"]?.ToString();
+            NameBox.Text = "Name : "+coin?["name"]?.ToString();
+            SupplyBox.Text = "Circulating Supply : " + Math.Round(double.Parse(coin?["supply"]?.ToString() ?? String.Empty),0);
+            
+            //MaxSupplyBox.Text = "Max Supply : " + Math.Round(double.Parse(coin?["maxSupply"]?.ToString() ?? String.Empty),0);
+            if (coin?["maxSupply"]?.ToString() != null)
+            {
+                MaxSupplyBox.Text = "Max Supply : " + Math.Round(double.Parse(coin?["maxSupply"]?.ToString() ?? String.Empty), 0);
+            }
+            else
+            {
+                MaxSupplyBox.Text = "Max Supply : " + "N/A";
+            }
+            
+            
+            //Math.Round(double.Parse(coin?["maxSupply"]?.ToString() ?? String.Empty),0);
+            
+            MarketCapBox.Text = "Market Cap : "+ Math.Round(double.Parse(coin?["marketCapUsd"]?.ToString() ?? string.Empty),0);
+            PriceBox.Text = "Price : $"+ Math.Round(double.Parse(coin?["priceUsd"]?.ToString() ?? string.Empty), 2);
+            
+            Change24HBox.Text = "Volume change in 24h : "+Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty), 0);
+            ChangeP24HBox.Text = "% Change in 24h : "+Math.Round(double.Parse(coin?["changePercent24Hr"]?.ToString() ?? string.Empty), 1)+"%";
             
         }
         

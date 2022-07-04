@@ -10,25 +10,33 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition /> <!-- Properties First Line -->
+            <RowDefinition /> <!-- Properties Second Line -->
+            <RowDefinition /> <!-- Properties Third Line -->
+            <RowDefinition /> <!-- Properties Fourth Line -->
+            
+            <RowDefinition /> <!-- Indicator First Line -->
+            <RowDefinition /> <!-- Indicator Second Line -->
+            <RowDefinition /> <!-- Indicator Third Line -->
             
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Name="FetchedPropertiesBox">
-            <TextBlock Name="SymbolBox" Text="Error"/>
-            <TextBlock Name="NameBox" Text="Error"/>
-            <TextBlock Name="SupplyBox" Text="Error"/>
-            <TextBlock Name="MaxSupplyBox" Text="Error"/>
-            <TextBlock Name="MarketCapBox" Text="Error"/>
-            
-            <TextBlock Name="PriceBox" Text="Error"/>
-            
-            <TextBlock Name="Change24HBox" Text="Error"/>
-            <TextBlock Name="ChangeP24HBox" Text="Error"/>
-            
-            
-        </StackPanel>
+        
+            <TextBlock Grid.Column="1" Grid.Row="0" Name="SymbolBox" Text="Error"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Name="NameBox" Text="Error"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Name="SupplyBox" Text="Error"/>
+            <TextBlock Grid.Column="0" Grid.Row="3" Name="MaxSupplyBox" Text="Error"/>
+        
+            <TextBlock Grid.Column="0" Grid.Row="4" Name="MarketCapBox" Text="Error"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Name="PriceBox" Text="Error"/>
+            <TextBlock Grid.Column="0" Grid.Row="5" Name="Change24HBox" Text="Error"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Name="ChangeP24HBox" Text="Error"/>
+        
         <!--<StackPanel>
             <TextBlock Name="MovingAverageBox" Text="Error"/>
             <TextBlock Name="ExponentialMovingAverageBox" Text="Error"/>
