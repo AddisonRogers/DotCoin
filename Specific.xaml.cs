@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,11 +21,23 @@ namespace DotCoinWPF
     /// </summary>
     public partial class Page2 : Page
     {
-        public Page2(string coin)
+        public Page2(string name)
         {
             
             InitializeComponent();
-            Noc.Text = coin;
+            refreshcoin(name);
+            
+            
         }
+
+        public async void refreshcoin (string name)
+        {
+            
+            var coin = await Fetch.Get(name);
+            Title = "DotCoin | "+name+" "+coin?["priceUsd"]?.ToString();
+            SymbolBox.Text = coin?["symbol"]?.ToString();
+            
+        }
+        
     }
 }

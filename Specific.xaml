@@ -5,10 +5,43 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DotCoinWPF"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page2" Background="Aqua">
+      d:DesignHeight="390" d:DesignWidth="735"
+      Title="Page2" Background="white">
 
     <Grid>
-        <TextBlock Name="Noc" Text="EGG"/>
+        <Grid.RowDefinitions>
+            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
+        <StackPanel Name="FetchedPropertiesBox">
+            <TextBlock Name="SymbolBox" Text="Error"/>
+            <TextBlock Name="NameBox" Text="Error"/>
+            <TextBlock Name="SupplyBox" Text="Error"/>
+            <TextBlock Name="MaxSupplyBox" Text="Error"/>
+            <TextBlock Name="MarketCapBox" Text="Error"/>
+            
+            <TextBlock Name="PriceBox" Text="Error"/>
+            
+            <TextBlock Name="Change24HBox" Text="Error"/>
+            <TextBlock Name="ChangeP24HBox" Text="Error"/>
+            
+            
+        </StackPanel>
+        <!--<StackPanel>
+            <TextBlock Name="MovingAverageBox" Text="Error"/>
+            <TextBlock Name="ExponentialMovingAverageBox" Text="Error"/>
+            <TextBlock Name="StochaticOscillatorBox" Text="Error"/>
+            <TextBlock Name="MACDBox" Text="Error"/>
+            <TextBlock Name="BollingerBandsBox" Text="Error"/>
+            <TextBlock Name="RSIBox" Text="Error"/>
+            <TextBlock Name="FibonacciRetracementBox" Text="Error"/>
+            <TextBlock Name="IchimokuCloudBox" Text="Error"/>
+            <TextBlock Name="StandardDeviationBox" Text="Error"/>
+            <TextBlock Name="AverageDirectionalIndexBox" Text="Error"/>
+            <TextBlock Name="CumulativeVolumeDeltaBox" Text="Error"/>
+            <TextBlock Name="VolumeWeightedAveragePriceBox" Text="Error"/>
+        </StackPanel>-->
     </Grid>
 </Page>

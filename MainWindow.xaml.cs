@@ -34,7 +34,7 @@ namespace DotCoinWPF
             string[]? names = await DotCoinWPF.Fetch.GetAllNames();
             if (names != null && names.Contains(name))
             {
-                MainFrame.Content = new Page2(name);
+                MainFrame.Content = new Page2(name); //TODO if name isnt in list go to a "not found" page
             }
         }
 

@@ -45,7 +45,7 @@ public static class Fetch
                 {
                     for (int i = 0; i < count; i++)
                     {
-                        if (json[i]?["symbol"]?.ToString() == symbol)
+                        if (json[i]?["id"]?.ToString() == symbol)
                         {
                             return json[i];
                         }
