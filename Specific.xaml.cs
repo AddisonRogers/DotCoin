@@ -25,19 +25,10 @@ namespace DotCoinWPF
     {
         public Page2(string name)
         {
-            name = name;
             InitializeComponent();
-            
-            
             refreshcoin(name);
-                
-            
-            //refreshcoin(name);
-            
-            
         }
-
-        public async void refreshcoin (string name)
+        private async void refreshcoin (string name)
         {
             var coin = await Fetch.Get(name);
             Title = name;
@@ -57,7 +48,6 @@ namespace DotCoinWPF
             Change24HBox.Text = "Volume change in 24h : "+Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty), 0);
             ChangeP24HBox.Text = "% Change in 24h : "+Math.Round(double.Parse(coin?["changePercent24Hr"]?.ToString() ?? string.Empty), 1)+"%"; //TODO should probably redo this and make it more complex etc. (Also add a graph)
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e) {  
             DispatcherTimer dispatcherTimer = new DispatcherTimer();  
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);  
@@ -66,9 +56,7 @@ namespace DotCoinWPF
         }  
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            
             refreshcoin(Title);
         }
-        
     }
 }
