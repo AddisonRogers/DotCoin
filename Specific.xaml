@@ -5,8 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DotCoinWPF"
       mc:Ignorable="d" 
+      Loaded="Window_Loaded"
       d:DesignHeight="390" d:DesignWidth="735"
       Title="Page2" Background="white">
+    
+    
 
     <Grid>
         <Grid.RowDefinitions>
@@ -36,6 +39,7 @@
             <TextBlock Grid.Column="0" Grid.Row="1" Name="PriceBox" Text="Error"/>
             <TextBlock Grid.Column="0" Grid.Row="5" Name="Change24HBox" Text="Error"/>
             <TextBlock Grid.Column="1" Grid.Row="1" Name="ChangeP24HBox" Text="Error"/>
+            
         
         <!--<StackPanel>
             <TextBlock Name="MovingAverageBox" Text="Error"/>
@@ -52,4 +56,5 @@
             <TextBlock Name="VolumeWeightedAveragePriceBox" Text="Error"/>
         </StackPanel>-->
     </Grid>
+    
 </Page>

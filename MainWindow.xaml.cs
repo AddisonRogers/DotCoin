@@ -26,6 +26,10 @@ namespace DotCoinWPF
         {
             InitializeComponent();
             MainFrame.Content = new Page1();
+            var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0,0,1);
+            dispatcherTimer.Start();
         }
 
         private async Task NameBox(string nameRaw) //postbox
@@ -45,6 +49,10 @@ namespace DotCoinWPF
                 NameBox(SearchBar.Text);
                 SearchBar.Text= "";
             }
+        }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            
         }
     }
 }
