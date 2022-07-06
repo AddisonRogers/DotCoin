@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace DotCoinWPF
+namespace DotCoinWPF.pages
 {
     /// <summary>
     /// Interaction logic for Page1.xaml

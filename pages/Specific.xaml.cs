@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Nodes;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
+using CommunityToolkit.Mvvm.ComponentModel;
+using LiveChartsCore;
+using LiveChartsCore.Defaults;
+using LiveChartsCore.SkiaSharpView;
 
-namespace DotCoinWPF
+namespace DotCoinWPF.pages
 {
     /// <summary>
     /// Interaction logic for Page2.xaml
@@ -47,8 +41,19 @@ namespace DotCoinWPF
             PriceBox.Text = "Price : $"+ Math.Round(double.Parse(coin?["priceUsd"]?.ToString() ?? string.Empty), 2);
             Change24HBox.Text = "Volume change in 24h : "+Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty), 0);
             ChangeP24HBox.Text = "% Change in 24h : "+Math.Round(double.Parse(coin?["changePercent24Hr"]?.ToString() ?? string.Empty), 1)+"%"; //TODO should probably redo this and make it more complex etc. (Also add a graph)
+            
+            
+            
+            
+            
+            
+            
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e) {  
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            
+            
             DispatcherTimer dispatcherTimer = new DispatcherTimer();  
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);  
             dispatcherTimer.Interval = new TimeSpan(0, 0, 3);  
@@ -58,5 +63,8 @@ namespace DotCoinWPF
         {
             refreshcoin(Title);
         }
-    }
+        
+        
+    
+}
 }
