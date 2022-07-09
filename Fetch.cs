@@ -1,4 +1,6 @@
-﻿namespace DotCoinWPF;
+﻿using System.Net.Http.Json;
+
+namespace DotCoinWPF;
 
 using System;
 using System.Net.Http;
@@ -8,12 +10,11 @@ using System.Threading.Tasks;
 
 public static class Fetch
 {
-    public static async Task<JsonNode?> GetAll()
-        {
-            var client = new HttpClient();
-            var response = await client.GetAsync("https://api.coincap.io/v2/assets");
-            return JsonNode.Parse(await response.Content.ReadAsStringAsync())?["data"];
-        }
+    private static JsonNode? GetAll()
+    {
+        using HttpClient client = new HttpClient();
+        return JsonNode.Parse(client.GetStringAsync("https://api.coincap.io/v2/assets").Result)?["data"];
+    }
     
         public static async Task<double[]> History(string? id, int timeValue, string? interval)
         {
@@ -40,11 +41,10 @@ public static class Fetch
             
         
         }
-
         public static async Task<JsonNode?> Get(string? symbol)
         {
 
-            JsonNode? json = await GetAll();
+            JsonNode? json = GetAll();
             if (json != null)
             {
                 var count = json.AsArray().Count;
@@ -69,10 +69,9 @@ public static class Fetch
 
             return null; //error checking
         }
-
         public static async Task<string[]?> GetAllNames()
         {
-            JsonNode? json = await GetAll();
+            JsonNode? json = GetAll();
             if (json == null) return null;
             
             string?[] names = new string?[json.AsArray().Count];
