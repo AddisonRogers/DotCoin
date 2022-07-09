@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,6 +22,8 @@ namespace DotCoinWPF.pages
         {
             InitializeComponent();
             refreshcoin(name);
+            
+
         }
         private async void refreshcoin (string name)
         {

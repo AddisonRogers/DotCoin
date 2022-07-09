@@ -10,7 +10,7 @@
       mc:Ignorable="d" 
       Loaded="Window_Loaded"
       d:DesignHeight="390" d:DesignWidth="735"
-      Title="Page2" Background="white" d:DataContext="{pages:ViewModel }">
+      Title="Page2" Background="white" FontSize="20">
     
     <Grid>
         <Grid.RowDefinitions>
@@ -19,9 +19,9 @@
             <RowDefinition />
             <RowDefinition />
             
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <!-- <RowDefinition /> -->
+            <!-- <RowDefinition /> -->
+            <!-- <RowDefinition /> -->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -40,8 +40,8 @@
             <TextBlock Grid.Column="0" Grid.Row="5" Name="Change24HBox" Text="Error"/>
             <TextBlock Grid.Column="1" Grid.Row="1" Name="ChangeP24HBox" Text="Error"/>
             </StackPanel>
-            <Frame Grid.Row="0" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="2" Name="graphframe" NavigationUIVisibility="Hidden" Source="graph.xaml"/>
-
+            
+            
             
         <!--<StackPanel>
             <TextBlock Name="MovingAverageBox" Text="Error"/>

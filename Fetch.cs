@@ -15,23 +15,30 @@ public static class Fetch
             return JsonNode.Parse(await response.Content.ReadAsStringAsync())?["data"];
         }
     
-        public static async Task<double[]?> History(string? id, int timeValue, string? interval)
+        public static async Task<double[]> History(string? id, int timeValue, string? interval)
         {
-            var client = new HttpClient();
-            var response = await client.GetAsync($"https://api.coincap.io/v2/assets/{id}/history?interval={interval}");
-            var json = JsonNode.Parse(await response.Content.ReadAsStringAsync())?["data"];
-            var count = json.AsArray().Count -1;
-            double[] prices = new double[timeValue];
-            int x = count - timeValue;
-            int counter = -1;
-            for (int i = count; i > x; i--)
-            {
-                counter++;
-                prices[counter] = double.Parse(json[i]?["priceUsd"]?.ToString() ?? string.Empty);
-            }
-
-            return prices; //needs to be relooked and tested
-    
+            HttpClient client = new HttpClient();
+            
+            Task<string> t = client.GetStringAsync($"https://api.coincap.io/v2/assets/{id}/history?interval={interval}");
+            t.Wait();
+            JsonNode? json = JsonNode.Parse(t.Result)?["data"];
+            
+            //var json = JsonNode.Parse(response.Content.ReadAsStringAsync().Result)?["data"];
+            
+                var count = json.AsArray().Count -1;
+            
+                double[] prices = new double[timeValue];
+                int x = count - timeValue;
+                int counter = -1;
+                for (int i = count; i > x; i--)
+                {
+                    counter++;
+                    prices[counter] = double.Parse(json[i]?["priceUsd"]?.ToString() ?? string.Empty);
+                }
+            
+                return prices; //needs to be relooked and tested
+            
+        
         }
 
         public static async Task<JsonNode?> Get(string? symbol)

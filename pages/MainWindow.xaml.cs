@@ -15,7 +15,6 @@ namespace DotCoinWPF
         {
             InitializeComponent();
             MainFrame.Content = new Page1();
-            
         }
 
         private async Task NameBox(string nameRaw) //postbox
