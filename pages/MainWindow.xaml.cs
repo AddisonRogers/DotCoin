@@ -17,10 +17,10 @@ namespace DotCoinWPF
             MainFrame.Content = new Page1();
         }
 
-        private async Task NameBox(string nameRaw) //postbox
+        private void NameBox(string nameRaw) //postbox
         {
             var name = nameRaw.ToLower().Trim();
-            string[]? names = await DotCoinWPF.Fetch.GetAllNames();
+            string[]? names = DotCoinWPF.Fetch.GetAllNames();
             if (names != null && names.Contains(name))
             {
                 MainFrame.Content = new Page2(name); //TODO if name isnt in list go to a "not found" page

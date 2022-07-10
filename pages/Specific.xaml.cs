@@ -27,7 +27,7 @@ namespace DotCoinWPF.pages
         }
         private async void refreshcoin (string name)
         {
-            var coin = await Fetch.Get(name);
+            var coin = Fetch.Get(name);
             Title = name;
             SymbolBox.Text = "Symbol : "+coin?["symbol"]?.ToString();
             NameBox.Text = "Name : "+coin?["name"]?.ToString();
@@ -45,12 +45,7 @@ namespace DotCoinWPF.pages
             Change24HBox.Text = "Volume change in 24h : "+Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty), 0);
             ChangeP24HBox.Text = "% Change in 24h : "+Math.Round(double.Parse(coin?["changePercent24Hr"]?.ToString() ?? string.Empty), 1)+"%"; //TODO should probably redo this and make it more complex etc. (Also add a graph)
             
-            
-            
-            
-            
-            
-            
+            MovingAverageBox.Text = "Moving Average : " + Math.Round(double.Parse(Indicator.MovingAverage(name)?.ToString() ?? string.Empty), 0);
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

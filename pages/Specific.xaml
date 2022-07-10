@@ -39,6 +39,8 @@
             <TextBlock Grid.Column="0" Grid.Row="1" Name="PriceBox" Text="Error"/>
             <TextBlock Grid.Column="0" Grid.Row="5" Name="Change24HBox" Text="Error"/>
             <TextBlock Grid.Column="1" Grid.Row="1" Name="ChangeP24HBox" Text="Error"/>
+            
+            <TextBlock Name="MovingAverageBox" Text="Error"/>
             </StackPanel>
             
             

@@ -15,10 +15,10 @@ public class Indicator
     //Moving average ((Since crypto crash) Days)
     //then cut off after 16th of june as thats after the latest crash
     //double unixTimestamp = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-    public static async Task<double?> MovingAverage(string? id)
+    public static double? MovingAverage(string? id)
     {
         int timeValue = (DateTime.Today - new DateTime(2022,6,16)).Days;
-        double[]? prices = await Fetch.History(id, timeValue, "d1");
+        double[]? prices = Fetch.History(id, timeValue, "d1");
         return prices.Sum() / prices.Length;
     } 
     
