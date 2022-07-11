@@ -8,15 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
-      <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.300" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2"/>
+        <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.300"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ApplicationDefinition Include="pages\App.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-      </ApplicationDefinition>
+        <ApplicationDefinition Include="pages\App.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+        </ApplicationDefinition>
     </ItemGroup>
 
 </Project>

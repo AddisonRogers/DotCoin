@@ -1,24 +1,21 @@
 ﻿<Page x:Class="DotCoinWPF.pages.Page2"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:DotCoinWPF"
-      
-      xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
-      xmlns:pages="clr-namespace:DotCoinWPF.pages"
-      mc:Ignorable="d" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+      mc:Ignorable="d"
       Loaded="Window_Loaded"
       d:DesignHeight="390" d:DesignWidth="735"
       Title="Page2" Background="white" FontSize="20">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-            
+
             <!-- <RowDefinition /> -->
             <!-- <RowDefinition /> -->
             <!-- <RowDefinition /> -->
@@ -30,21 +27,20 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="4">
-            <TextBlock Grid.Column="1" Grid.Row="0" Name="SymbolBox" Text="Error"/>
-            <TextBlock Grid.Column="0" Grid.Row="0" Name="NameBox" Text="Error"/>
-            <TextBlock Grid.Column="0" Grid.Row="2" Name="SupplyBox" Text="Error"/>
-            <TextBlock Grid.Column="0" Grid.Row="3" Name="MaxSupplyBox" Text="Error"/>
-        
-            <TextBlock Grid.Column="0" Grid.Row="4" Name="MarketCapBox" Text="Error"/>
-            <TextBlock Grid.Column="0" Grid.Row="1" Name="PriceBox" Text="Error"/>
-            <TextBlock Grid.Column="0" Grid.Row="5" Name="Change24HBox" Text="Error"/>
-            <TextBlock Grid.Column="1" Grid.Row="1" Name="ChangeP24HBox" Text="Error"/>
-            
-            <TextBlock Name="MovingAverageBox" Text="Error"/>
-            </StackPanel>
-            
-            
-            
+            <TextBlock Name="SymbolBox" Text="Error" />
+            <TextBlock Name="NameBox" Text="Error" />
+            <TextBlock Name="SupplyBox" Text="Error" />
+            <TextBlock Name="MaxSupplyBox" Text="Error" />
+
+            <TextBlock Name="MarketCapBox" Text="Error" />
+            <TextBlock Name="PriceBox" Text="Error" />
+            <TextBlock Name="Change24HBox" Text="Error" />
+            <TextBlock Name="ChangeP24HBox" Text="Error" />
+
+            <TextBlock Name="MovingAverageBox" Text="Error" />
+        </StackPanel>
+
+
         <!--<StackPanel>
             <TextBlock Name="MovingAverageBox" Text="Error"/>
             <TextBlock Name="ExponentialMovingAverageBox" Text="Error"/>
@@ -59,6 +55,6 @@
             <TextBlock Name="CumulativeVolumeDeltaBox" Text="Error"/>
             <TextBlock Name="VolumeWeightedAveragePriceBox" Text="Error"/>
         </StackPanel>-->
-    
+
     </Grid>
 </Page>
