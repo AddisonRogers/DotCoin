@@ -20,7 +20,7 @@ public class Indicator
 
 
     //Exponential moving average (12-26 Days)
-
+    
 
     //Stochastic oscillator (General trend?)
 

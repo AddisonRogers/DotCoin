@@ -15,7 +15,10 @@ public partial class Page1 : Page
 
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
-        var egg = (Window.GetWindow(Application.Current.MainWindow) as MainWindow)?.MainFrame;
-        egg.Content = new Page2("bitcoin");
+        if (Application.Current.MainWindow != null)
+        {
+            var egg = (Window.GetWindow(Application.Current.MainWindow) as MainWindow)?.MainFrame;
+            egg.Content = new Page2("bitcoin");
+        }
     }
 }

@@ -3,12 +3,17 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      
+      
+     
 
       mc:Ignorable="d"
       Loaded="Window_Loaded"
       d:DesignHeight="390" d:DesignWidth="735"
-      Title="Page2" Background="white" FontSize="20">
-
+      Title="Page2" Background="white" FontSize="20" DataContext="Specific.xaml.">
+    
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -38,7 +43,11 @@
             <TextBlock Name="ChangeP24HBox" Text="Error" />
 
             <TextBlock Name="MovingAverageBox" Text="Error" />
+            <TextBlock Name="ExponentialMovingAverageBox" Text="Error"/>
         </StackPanel>
+        
+        <WpfPlot Grid.Row = "0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" Name="Chart" /> <!--TODO Make the option to have 7day 14day month year and max -->
+        
 
 
         <!--<StackPanel>
