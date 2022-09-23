@@ -8,16 +8,16 @@ it's all about learning.
 This project's core focuses are : REST API, WPF, Crypto / Stock Market algorithms, C#
 
 
-Stuff remaining to do:
-News feed (web scrape)
-Serving an Api with the prices that I predict etc
-Dump csv file of prices etc
-Calender of the biggest moves etc
-Dark Mode
-Discord Api + Desktop notifcations
-Log Predictions and see how correct they are *online* + log it onto the graph
-Leaderboard list (sorting)
-Trade via exchanges + all the other stuff for it
-Crypto info page
-USD/POUND/OTHER
+Stuff remaining to do:\n
+News feed (web scrape)\n
+Serving an Api with the prices that I predict etc\n
+Dump csv file of prices etc\n
+Calender of the biggest moves etc\n
+Dark Mode\n
+Discord Api + Desktop notifcations\n
+Log Predictions and see how correct they are *online* + log it onto the graph\n
+Leaderboard list (sorting)\n
+Trade via exchanges + all the other stuff for it\n
+Crypto info page\n
+USD/POUND/OTHER\n
 Calculator ie I have 100 dollars how mcuh btc is that
