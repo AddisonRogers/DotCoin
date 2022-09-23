@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="DotCoinTwo/App.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/ViewModels/News.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/API Window.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/Calender.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/Discord Window.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/Exchanges.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/Graph.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/Info Page.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/Leaderboard.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/MainWindow.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/News Feed.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/News.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/Settings.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+        <entry key="DotCoinTwo/Views/Specific.axaml" value="DotCoinTwo/DotCoinTwo.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,42 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="DotCoinTwo.Views.Specific">
+    
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+
+            <!-- <RowDefinition /> -->
+            <!-- <RowDefinition /> -->
+            <!-- <RowDefinition /> -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="4">
+            <TextBlock Name="SymbolBox" Text="{Binding }" />
+            <TextBlock Name="NameBox" Text="{Binding }" />
+            <TextBlock Name="SupplyBox" Text="Error" />
+            <TextBlock Name="MaxSupplyBox" Text="Error" />
+
+            <TextBlock Name="MarketCapBox" Text="Error" />
+            <TextBlock Name="PriceBox" Text="Error" />
+            <TextBlock Name="Change24HBox" Text="Error" />
+            <TextBlock Name="ChangeP24HBox" Text="Error" />
+
+            <TextBlock Name="MovingAverageBox" Text="Error" />
+            <TextBlock Name="ExponentialMovingAverageBox" Text="Error"/>
+        </StackPanel>
+        
+    </Grid>
+    
+</UserControl>
