@@ -9,7 +9,7 @@ public static class Fetch
     private static JsonNode? GetAll()
     {
         using var client = new HttpClient();
-        return JsonNode.Parse(client.GetStringAsync("https://api.coincap.io/v2/assets").Result)?["data"];
+        return JsonNode.Parse(client.GetStringAsync("https://api.coincap.io/v2/assets").Result)?["data"]; //add error checking
     }
 
     public static double[] History(string? id, long timeValue, string? interval)
