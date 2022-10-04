@@ -6,28 +6,28 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="DotCoin3.MainWindow"
         Title="DotCoin">
-        
-        <Grid>
-                <Grid.RowDefinitions>
-                        <RowDefinition Height="10" /> <!-- 0 -->
-                        <RowDefinition Height="25" /> <!-- 1 -->
-                        <RowDefinition Height="5" />
-                        <RowDefinition Height="*" /> <!-- 3 -->
-                        <RowDefinition Height="20" /> <!-- 4 -->
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="25" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="20" />
-                </Grid.ColumnDefinitions>
-                <TextBox x:Name="SearchBar" Grid.Row="1" Grid.Column="5" FontSize="20" KeyUp="SearchBar_OnKeyUp" />
-                
-                
-                <UserControl Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Name="MVM"/>
-        </Grid>
-        
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" /> <!-- 0 -->
+            <RowDefinition Height="25" /> <!-- 1 -->
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" /> <!-- 3 -->
+            <RowDefinition Height="20" /> <!-- 4 -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="25" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="SearchBar" Grid.Row="1" Grid.Column="5" FontSize="20" KeyUp="SearchBar_OnKeyUp" />
+
+
+        <UserControl Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Name="MVM"/>
+    </Grid>
+
 </Window>
