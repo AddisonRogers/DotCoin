@@ -3,7 +3,10 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="DotCoin3/App.axaml" value="DotCoin3/DotCoin3.csproj" />
         <entry key="DotCoin3/MainWindow.axaml" value="DotCoin3/DotCoin3.csproj" />
+        <entry key="DotCoin3/Specific.axaml" value="DotCoin3/DotCoin3.csproj" />
+        <entry key="DotCoin3/styles.axaml" value="DotCoin3/DotCoin3.csproj" />
       </map>
     </option>
   </component>
