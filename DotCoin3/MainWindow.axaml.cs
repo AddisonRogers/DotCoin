@@ -20,16 +20,27 @@ namespace DotCoin3
             string[]? names = Fetch.GetAllNames();
             if (names != null && ((IList)names).Contains(name)) 
             {
+                
                 var temp = new Specific
                 {
-                    id = name
+                    Id = name
                 };
-                MVM.Content = temp;
-
-
+                this.Find<UserControl>("MVM").Content = temp;
             }
             else
             {
+                if (names == null)
+                {
+                    
+                }
+                if (!((IList)names).Contains(name))
+                {
+                    var temp = new error_page()
+                    {
+                        error_code = "404 - Could not find the coin you were looking for",
+                    };
+                    this.Find<UserControl>("MVM").Content = temp;
+                }
                 //TODO go to a "not found" page _ call the specific page
             }
         }
@@ -37,8 +48,9 @@ namespace DotCoin3
         {
             if (e.Key == Key.Enter)
             {
-                NameBox(SearchBar.Text);
-                SearchBar.Text = "";
+                NameBox(this.Find<TextBox>("SearchBar").Text);
+                this.Find<TextBox>("SearchBar").Text = "";
+                
             }
         }
     }

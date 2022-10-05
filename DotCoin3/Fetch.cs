@@ -55,10 +55,8 @@ public static class Fetch
     {
         var json = GetAll();
         if (json == null) return null;
-
-        var names = new string?[json.AsArray().Count];
+        string?[] names = new string?[json.AsArray().Count];
         for (var i = 0; i < json.AsArray().Count; i++) names[i] = json[i]?["id"]?.ToString();
-
         return names;
     }
 }

@@ -2,7 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:ScottPlot="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+             
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" Initialized="StyledElement_OnInitialized"
              x:Class="DotCoin3.Specific">
     <Grid >
         <Grid.RowDefinitions>
@@ -38,6 +40,8 @@
             <TextBlock Name="MovingAverageBox" Text="Error" />
             <TextBlock Name="ExponentialMovingAverageBox" Text="Error"/>
         </StackPanel>
+        <ScottPlot:AvaPlot Grid.Row = "0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" Name="Chart"/>
+        
 
     </Grid>
 </UserControl>
