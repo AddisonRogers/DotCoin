@@ -21,3 +21,8 @@ Stuff remaining to do:
 - Crypto info page
 - USD/POUND/OTHER
 - Calculator ie I have 100 dollars how mcuh btc is that
+
+
+
+
+Also im using this : https://cryptopanic.com/developers/api/
