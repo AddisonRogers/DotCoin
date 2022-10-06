@@ -73,4 +73,6 @@ public static class Fetch
         var ri = new RegionInfo(System.Threading.Thread.CurrentThread.CurrentUICulture.LCID);
         return ri.ISOCurrencySymbol;
     }
+    
+    
 }
