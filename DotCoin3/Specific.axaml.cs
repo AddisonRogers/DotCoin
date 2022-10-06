@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using ScottPlot.Avalonia;
+using System.Net;
+using Avalonia.Interactivity;
 
 namespace DotCoin3;
 
@@ -15,11 +18,13 @@ public partial class Specific : UserControl
     }
 
     public string Id { get; set; }
-    private void SetText()
+    private void SetText(double rate = 0)
     {
         var name = Id;
         
         var coin = Fetch.Get(name);
+        this.Find<Button>("ToNative").Content = CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol;
+        this.Find<Button>("ToDollar").IsEnabled = true;
         this.Find<TextBlock>("SymbolBox").Text = "Symbol : " + coin?["symbol"]?.ToString();
         this.Find<TextBlock>("NameBox").Text = "Name : " + coin?["name"]?.ToString();
         this.Find<TextBlock>("SupplyBox").Text = "Circulating Supply : " + Math.Round(double.Parse(coin?["supply"]?.ToString() ?? string.Empty), 0);
@@ -27,10 +32,22 @@ public partial class Specific : UserControl
         //This if is done becuause some crypto have unlimited supply
         if (coin?["maxSupply"]?.ToString() != null) this.Find<TextBlock>("MaxSupplyBox").Text = "Max Supply : " + Math.Round(double.Parse(coin?["maxSupply"]?.ToString() ?? string.Empty), 0);
         else this.Find<TextBlock>("MaxSupplyBox").Text = "Max Supply : " + "N/A";
-        this.Find<TextBlock>("MarketCapBox").Text = "Market Cap : " + Math.Round(double.Parse(coin?["marketCapUsd"]?.ToString() ?? string.Empty), 0);
-        this.Find<TextBlock>("PriceBox").Text = "Price : " + Math.Round(double.Parse(coin?["priceUsd"]?.ToString() ?? string.Empty), 2);
-        this.Find<TextBlock>("Change24HBox").Text = "Change 24H : " + Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty), 2); 
         this.Find<TextBlock>("ChangeP24HBox").Text = "Change % 24H : " + Math.Round(double.Parse(coin?["changePercent24Hr"]?.ToString() ?? string.Empty), 2);
+
+
+        if (rate == 0)
+        {
+            this.Find<TextBlock>("MarketCapBox").Text = "Market Cap : " + Math.Round(double.Parse(coin?["marketCapUsd"]?.ToString() ?? string.Empty), 0);
+            this.Find<TextBlock>("PriceBox").Text = "Price : " + Math.Round(double.Parse(coin?["priceUsd"]?.ToString() ?? string.Empty), 2);
+            this.Find<TextBlock>("Change24HBox").Text = "Change 24H : " + Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty), 2); 
+
+        }
+        else
+        {
+            this.Find<TextBlock>("MarketCapBox").Text = "Market Cap : " + Math.Round(double.Parse(coin?["marketCapUsd"]?.ToString() ?? string.Empty) * rate, 0);
+            this.Find<TextBlock>("PriceBox").Text = "Price : " + Math.Round(double.Parse(coin?["priceUsd"]?.ToString() ?? string.Empty) * rate, 2);
+            this.Find<TextBlock>("Change24HBox").Text = "Change 24H : " + Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty) * rate, 2);
+        }
         //MovingAverageBox.Text = "Moving Average : " + Math.Round(double.Parse(Indicator.MovingAverage(name)?.ToString() ?? string.Empty), 0);
     }
     private void InitializeComponent()
@@ -103,6 +120,11 @@ public partial class Specific : UserControl
     {
         SetText();
         Chartstart();
+        
+        
+        
+        
+        
         var dispatcherTimer = new DispatcherTimer();
         dispatcherTimer.Tick += dispatcherTimer_Tick;
         dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
@@ -114,4 +136,15 @@ public partial class Specific : UserControl
         SetText();
         Chartstart(true);
     }
+
+    private void ToDollar_OnClick(object? sender, RoutedEventArgs e)
+    {
+        SetText();
+    }
+
+    private void ToNative_OnClick(object? sender, RoutedEventArgs e)
+    {
+        SetText(double.Parse(Fetch.GetRates(Fetch.GetFiat())[0,1] ?? string.Empty));
+    }
+    
 }

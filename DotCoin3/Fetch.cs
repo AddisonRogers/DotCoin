@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Text.Json.Nodes;
 
@@ -45,10 +46,7 @@ public static class Fetch
     public static JsonNode? Get(string? symbol)
     {
         using var client = new HttpClient();
-        JsonObject? egg = (JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/assets?ids={symbol}").Result)?["data"])?[0] as JsonObject;
-        
-        
-        return egg;
+        return (JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/assets/{symbol}").Result)?["data"])?[0] as JsonObject;
     }
 
     public static string[]? GetAllNames()
@@ -58,5 +56,21 @@ public static class Fetch
         string?[] names = new string?[json.AsArray().Count];
         for (var i = 0; i < json.AsArray().Count; i++) names[i] = json[i]?["id"]?.ToString();
         return names;
+    }
+    public static string?[,] GetRates(string rate = null)
+    {
+        using var client = new HttpClient();
+        var json = JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/rates").Result)?["data"];
+        if (json == null) return null;
+        string?[,] rates = new string?[json!.AsArray().Count,2];
+        for (var i = 0; i < json.AsArray().Count; i++) {rates[i, 0] = json[i]?["symbol"]?.ToString(); rates[i, 1] = json[i]?["rateUsd"]?.ToString();}
+        if (rate == null) return rates;
+        for (var i = 0; i < rates.Length; i++) { if (rates[i, 0] == rate) return new string?[,] {{rates[i, 0], rates[i, 1]}}; }
+        return null;
+    }
+    public static string GetFiat()
+    {
+        var ri = new RegionInfo(System.Threading.Thread.CurrentThread.CurrentUICulture.LCID);
+        return ri.ISOCurrencySymbol;
     }
 }
