@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotCoin3", "DotCoin3\DotCoin3.csproj", "{0397990D-C099-40A7-AD2F-E9D8C31749FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotCoin3", "DotCoin3.csproj", "{0397990D-C099-40A7-AD2F-E9D8C31749FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

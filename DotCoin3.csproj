@@ -25,4 +25,14 @@
         <PackageReference Include="ScottPlot.Avalonia" Version="4.1.58" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
     </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Pages\error page.axaml.cs">
+        <DependentUpon>error page.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\Specific.axaml.cs">
+        <DependentUpon>Specific.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>
