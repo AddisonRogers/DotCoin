@@ -75,4 +75,18 @@ public static class Fetch
     }
     
     
+    public static JsonNode? NewsGet()
+    {
+        using var client = new HttpClient();
+        return JsonNode.Parse(client.GetStringAsync("https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true").Result)?["results"];
+    }
+    public static string?[] NewsGetTitles()
+    {
+        var json = NewsGet();
+        if (json == null) return null;
+        string?[] titles = new string?[json.AsArray().Count];
+        for (var i = 0; i < json.AsArray().Count; i++) titles[i] = json[i]?["title"]?.ToString();
+        return titles;
+    }
+    
 }
