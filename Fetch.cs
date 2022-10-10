@@ -73,6 +73,12 @@ public static class Fetch
         var ri = new RegionInfo(System.Threading.Thread.CurrentThread.CurrentUICulture.LCID);
         return ri.ISOCurrencySymbol;
     }
-    
-    
+
+    // This section is just to add the news api to the library
+    private static JsonNode? GetNews(string currency = null) //Make sure to input a symbol
+    {
+        using var client = new HttpClient();
+        if (currency == null) return JsonNode.Parse(client.GetStringAsync("https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true").Result)?["data"]; //add error checking
+        return JsonNode.Parse(client.GetStringAsync($"https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true&currencies={currency}").Result)?["data"]; //add error checking
+    }
 }
