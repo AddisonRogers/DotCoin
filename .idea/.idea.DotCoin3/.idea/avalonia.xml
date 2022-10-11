@@ -9,6 +9,7 @@
         <entry key="DotCoin3/Specific.axaml" value="DotCoin3/DotCoin3.csproj" />
         <entry key="DotCoin3/error page.axaml" value="DotCoin3/DotCoin3.csproj" />
         <entry key="DotCoin3/styles.axaml" value="DotCoin3/DotCoin3.csproj" />
+        <entry key="Pages/Error_Page.axaml" value="DotCoin3.csproj" />
       </map>
     </option>
   </component>
