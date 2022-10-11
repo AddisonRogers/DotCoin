@@ -43,10 +43,10 @@ public static class Fetch
         return priceList;
     }
 
-    public static JsonNode? Get(string? symbol)
+    public static JsonArray? Get(string? symbol)
     {
         using var client = new HttpClient();
-        return (JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/assets/{symbol}").Result)?["data"])?[0] as JsonObject;
+        return (JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/assets/{symbol}").Result)?["data"]) as JsonArray;
     }
 
     public static string[]? GetAllNames()
