@@ -27,11 +27,11 @@
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
     </ItemGroup>
     <ItemGroup>
-      <Compile Update="Pages\Error_Page.axaml.cs">
+      <Compile Update="Pages\ErrorPage.axaml.cs">
         <DependentUpon>error page.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Pages\Specific.axaml.cs">
+      <Compile Update="Pages\SpecificPage.axaml.cs">
         <DependentUpon>Specific.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
