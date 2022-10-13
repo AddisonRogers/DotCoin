@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Themes.Fluent;
+using DotCoin3.Pages;
 
 namespace DotCoin3
 {
@@ -41,7 +42,6 @@ namespace DotCoin3
                     };
                     this.Find<UserControl>("MVM").Content = temp;
                 }
-                //TODO go to a "not found" page _ call the specific page
             }
         }
         private void SearchBar_OnKeyUp(object sender, KeyEventArgs e)
@@ -52,6 +52,10 @@ namespace DotCoin3
                 this.Find<TextBox>("SearchBar").Text = "";
                 
             }
+        }
+        private void StyledElement_OnInitialized(object? sender, EventArgs e)
+        {
+            this.Find<UserControl>("MVM").Content = new LeaderBoardPage();
         }
     }
 }
