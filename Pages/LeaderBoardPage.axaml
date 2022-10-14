@@ -4,5 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="DotCoin3.Pages.LeaderBoardPage">
-    Welcome to Avalonia!
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            
+        </Grid.RowDefinitions>
+        
+        <StackPanel Name="CryptoInfo"></StackPanel>
+         <!-- Graph -->
+         <Line></Line>
+        <StackPanel Name="NewsFeed"></StackPanel>
+         
+         <Button Name="ListingA"></Button>
+        
+         
+         
+    </Grid>
 </UserControl>
