@@ -36,9 +36,5 @@
         <DependentUpon>Specific.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Include="Server\ServerMain.axaml.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="Server\ServerMain.axaml" />
     </ItemGroup>
 </Project>

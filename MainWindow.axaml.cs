@@ -55,7 +55,10 @@ namespace DotCoin3
         }
         private void StyledElement_OnInitialized(object? sender, EventArgs e)
         {
-            this.Find<UserControl>("MVM").Content = new LeaderBoardPage();
+            var temp = new LeaderBoardPage(){};
+            
+            MVM.Content = temp;
+            //this.Find<UserControl>("MVM").Content = temp;
         }
     }
 }
