@@ -13,6 +13,9 @@ namespace DotCoin3
         public MainWindow()
         {
             InitializeComponent();
+            var temp = new LeaderBoardPage(){};
+            
+            MVM.Content = temp;
             //Set Frame content
         }
         private void NameBox(string nameRaw) //postbox
@@ -55,9 +58,7 @@ namespace DotCoin3
         }
         private void StyledElement_OnInitialized(object? sender, EventArgs e)
         {
-            var temp = new LeaderBoardPage(){};
-            
-            MVM.Content = temp;
+            //pog
             //this.Find<UserControl>("MVM").Content = temp;
         }
     }

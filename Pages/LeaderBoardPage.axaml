@@ -2,25 +2,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dotCoin3="clr-namespace:DotCoin3"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="DotCoin3.Pages.LeaderBoardPage">
     
-    <Grid>
-        <Grid.ColumnDefinitions>
-            
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            
-        </Grid.RowDefinitions>
+    <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
         
-        <StackPanel Name="CryptoInfo"></StackPanel>
-         <!-- Graph -->
-         <Line></Line>
+        <StackPanel Name="CryptoInfo" Grid.Column="2">
+            <TextBlock>H</TextBlock>
+        </StackPanel>
+        <!-- Graph -->
+        <Line></Line>
         <StackPanel Name="NewsFeed"></StackPanel>
-         
-         <Button Name="ListingA"></Button>
         
-         
-         
+        <Button Name="ListingA"></Button>
+        
+        
+        
     </Grid>
 </UserControl>
