@@ -18,7 +18,7 @@ public class Indicator
         var prices = Fetch.History(id, timeValue, "d1");
         return prices.Sum() / prices.Length;
     }
-
+    //TODO TODAY
 
     //Exponential moving average (12-26 Days)
     

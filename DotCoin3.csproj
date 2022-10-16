@@ -37,4 +37,9 @@
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
+    <ItemGroup>
+      <AvaloniaXaml Update="Pages\LeaderBoardPageStyles.axaml">
+        <DependentUpon>LeaderBoardPage.axaml</DependentUpon>
+      </AvaloniaXaml>
+    </ItemGroup>
 </Project>
