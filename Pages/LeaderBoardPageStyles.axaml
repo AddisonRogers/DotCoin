@@ -1,6 +1,23 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+    <!-- Crypto Info -->
+    <Style Selector="DockPanel">
+        
+    </Style>
+    <Style Selector="DockPanel:pointerover">
+        
+    </Style>
+    <Style Selector="DockPanel:focus">
+        
+    </Style>
+    <Style Selector="TextBlock.h1">
+        
+    </Style>
+    <Style Selector="TextBlock.b1">
+        
+    </Style>
+    
     <!-- Grid Splitter -->
     <Style Selector="GridSplitter">
         
@@ -15,7 +32,4 @@
     <!-- -->
     
     
-    <Style>
-        
-    </Style>
 </Styles>

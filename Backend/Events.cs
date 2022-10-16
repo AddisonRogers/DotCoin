@@ -1,6 +1,7 @@
-﻿namespace DotCoin3;
-
-public class Events
+﻿namespace DotCoin3
 {
-    //TODO TODAY
+    public class Events
+    {
+        //TODO TODAY
+    }
 }

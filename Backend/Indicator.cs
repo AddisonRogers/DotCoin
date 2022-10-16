@@ -1,45 +1,46 @@
 ﻿using System;
 using System.Linq;
-namespace DotCoin3;
-
-public class Indicator
+namespace DotCoin3
 {
-
-    
-    //https://www.ig.com/en/trading-strategies/10-trading-indicators-every-trader-should-know-190604
-
-
-    //Moving average ((Since crypto crash) Days)
-    //then cut off after 16th of june as thats after the latest crash
-    //double unixTimestamp = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-    public static double? MovingAverage(string? id)
+    public class Indicator
     {
-        var timeValue = (DateTime.Today - new DateTime(2022, 6, 16)).Days;
-        var prices = Fetch.History(id, timeValue, "d1");
-        return prices.Sum() / prices.Length;
-    }
-    //TODO TODAY
 
-    //Exponential moving average (12-26 Days)
+    
+        //https://www.ig.com/en/trading-strategies/10-trading-indicators-every-trader-should-know-190604
+
+
+        //Moving average ((Since crypto crash) Days)
+        //then cut off after 16th of june as thats after the latest crash
+        //double unixTimestamp = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+        public static double? MovingAverage(string? id)
+        {
+            var timeValue = (DateTime.Today - new DateTime(2022, 6, 16)).Days;
+            var prices = Fetch.History(id, timeValue, "d1");
+            return prices.Sum() / prices.Length;
+        }
+        //TODO TODAY
+
+        //Exponential moving average (12-26 Days)
     
 
-    //Stochastic oscillator (General trend?)
+        //Stochastic oscillator (General trend?)
 
-    //MACD (12-26 Days)
+        //MACD (12-26 Days)
 
-    //Bollinger bands (20 Days)
+        //Bollinger bands (20 Days)
 
-    //RSI (14 Days)
+        //RSI (14 Days)
 
-    //Fibonacci retracement
+        //Fibonacci retracement
 
-    //Ichimoku cloud
+        //Ichimoku cloud
 
-    //Standard Deviation
+        //Standard Deviation
 
-    //Average Directional Index
+        //Average Directional Index
 
-    //Cumulative Volume Delta
+        //Cumulative Volume Delta
 
-    //Volume weighted average price
+        //Volume weighted average price
+    }
 }
