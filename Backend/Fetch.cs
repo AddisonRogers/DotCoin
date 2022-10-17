@@ -11,7 +11,7 @@ namespace DotCoin3
     public static class Fetch
     {
         private static bool Status() => true;
-        private static JsonNode? GetAll() 
+        public static JsonNode? GetAll() 
         {
             using var client = new HttpClient();
             return JsonNode.Parse(client.GetStringAsync("https://api.coincap.io/v2/assets").Result)?["data"]; //add error checking

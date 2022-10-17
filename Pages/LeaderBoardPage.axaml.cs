@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 using Avalonia.Threading;
 using ScottPlot.Avalonia;
 
@@ -24,7 +25,8 @@ public partial class LeaderBoardPage : UserControl
     {
         //LeaderBoardChartSet();
         CryptoInfoTextBlockSet();
-        
+        CryptoSet();
+        NewsSet();
         var dispatcherTimer = new DispatcherTimer();
         dispatcherTimer.Tick += dispatcherTimer_Tick;
         dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
@@ -103,6 +105,44 @@ public partial class LeaderBoardPage : UserControl
         
     }
 
+    private void CryptoSet()
+    {
+        var AllCrypto = Fetch.GetAll();
+        var CryptoList = this.Find<StackPanel>("CryptoListStackPanel");
+        for (var i = 0; i < AllCrypto.AsArray().Count; i++)
+        {
+            var CryptoButton = new Button
+            {
+                Content = AllCrypto[i]?.ToString()
+                //NewsTextBlock.Classes = 
+            };
+            
+            CryptoButton.Click += (sender, args) =>
+            {
+
+            };
+            CryptoList.Children.Add(CryptoButton);
+        }
+    }
+    private void NewsSet()
+    {
+        var News = Fetch.NewsGet();
+        var NewsList = this.Find<StackPanel>("NewsFeedStackPanel");
+        for (var i = 0; i < News!.AsArray().Count; i++)
+        {
+            var NewsButton = new Button
+            {
+                Content = News[i]?["title"]?.ToString()
+                //NewsTextBlock.Classes = 
+            };
+            
+            NewsButton.Click += (sender, args) =>
+            {
+                
+            };
+            NewsList.Children.Add(NewsButton);
+        }
+    }
     private void CryptoInfoClicked(object? sender, PointerPressedEventArgs e)
     {
         

@@ -7,9 +7,9 @@
              Initialized="Loaded"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="DotCoin3.Pages.LeaderBoardPage">
-    <UserControl.Styles>
+    <!--<UserControl.Styles>
         <StyleInclude Source="LeaderBoardPageStyles.axaml" />
-    </UserControl.Styles>
+    </UserControl.Styles>-->
     <Grid ColumnDefinitions="*,*,4,*" RowDefinitions="*,*,*"> <!-- TODO Modals-->
         <DockPanel Name="CryptoInfo" PointerPressed="CryptoInfoClicked" Grid.Column="0" Grid.Row="0"> <!-- Add Modal -->
             <TextBlock Text="Crypto Info" DockPanel.Dock="Top"/>
@@ -17,7 +17,12 @@
         </DockPanel>
         <ScottPlot:AvaPlot Name="LeaderBoardChart" Grid.Row="0" Grid.Column="1"/> <!-- Add Modal -->
         <GridSplitter Name="Splitter" Background="Black" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" /> 
-        <StackPanel Name="NewsFeed" Grid.Row="0" Grid.RowSpan="3" Grid.Column="3" /> <!-- Add Modal -->
-        <StackPanel Name="CryptoList" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"/> <!-- Add Modal -->
+        <ScrollViewer Name="NewsFeed" Grid.Row="0" Grid.RowSpan="3" Grid.Column="3">
+            <StackPanel Name="NewsFeedStackPanel"/>
+        </ScrollViewer>
+        <ScrollViewer Name="CryptoList" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <StackPanel Name="CryptoListStackPanel"/>
+        </ScrollViewer>
+            <!-- Add Modal -->
     </Grid>
 </UserControl>
