@@ -1,4 +1,4 @@
-# DotCoin
+# DotCoin - WPF version - Dead
 
 Right, so, This is going to be a nice WPF application showing the current prices of crypto according to coincap and
 right its also going to predict the prices. How? maths.
