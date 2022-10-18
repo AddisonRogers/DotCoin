@@ -4,13 +4,13 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json.Nodes;
+using System.Threading;
 using Avalonia.X11;
 
 namespace DotCoin3
 {
     public static class Fetch
     {
-        private static bool Status() => true;
         public static JsonNode? GetAll() 
         {
             using var client = new HttpClient();
@@ -90,10 +90,15 @@ namespace DotCoin3
             return null;
         }
         public static string GetFiat() => (new RegionInfo(System.Threading.Thread.CurrentThread.CurrentUICulture.LCID)).ToString();
-        public static JsonNode? NewsGet() 
+        public static JsonNode? NewsGet(int pages = 0)
         {
             using var client = new HttpClient();
-            return JsonNode.Parse(client.GetStringAsync("https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true").Result)?["results"];
+            if (pages == 0) {return JsonNode.Parse(client.GetStringAsync("https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true").Result)?["results"];}
+            for (var i = 0; i < pages; i++)
+            {
+                //https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true&page=2
+            }
+            return null;
         }
         public static string?[] NewsGetTitles()
         {
@@ -112,6 +117,7 @@ namespace DotCoin3
             {
                 var json = History(nameList[i], timeValue, interval); 
                 for (var j = 0; j != json.Length; j++) ((List<double>)array[i]).Add(json[j]);
+                Thread.Sleep(500);
             }
             double[] arrayadded = new double[array.Length];
             for (int i = 0; i != array.Length; i++) arrayadded[i] = ((List<double>)array[i]).Sum();

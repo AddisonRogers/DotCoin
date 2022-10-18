@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Themes.Fluent;
 using DotCoin3.Pages;
 
@@ -61,5 +62,6 @@ namespace DotCoin3
             //pog
             //this.Find<UserControl>("MVM").Content = temp;
         }
+        private void Button_OnClick(object? sender, RoutedEventArgs e) => this.Find<UserControl>("MVM").Content = new LeaderBoardPage();
     }
 }

@@ -5,6 +5,7 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
+using Discord.Rest;
 using ScottPlot.Avalonia;
 
 namespace DotCoin3.Pages;
@@ -100,11 +101,7 @@ public partial class LeaderBoardPage : UserControl
         //TODO Make the chart use a time system rather than relying off units so that I can upload a full minute for the past like year
     }*/
 
-    private void CryptoInfoTextBlockSet()
-    {
-        
-    }
-
+    private void CryptoInfoTextBlockSet() => this.Find<TextBlock>("CryptoInfoTextBlock").Text = System.IO.File.ReadAllText("C:\\Users\\Addison\\RiderProjects\\DotCoin\\Pages\\CryptoInfo.txt");
     private void CryptoSet()
     {
         var AllCrypto = Fetch.GetAll();
@@ -113,13 +110,17 @@ public partial class LeaderBoardPage : UserControl
         {
             var CryptoButton = new Button
             {
+                Name = AllCrypto[i]?["id"].ToString(),
                 Content = AllCrypto[i]?.ToString()
+                
                 //NewsTextBlock.Classes = 
+                //TODO Styles
             };
             
             CryptoButton.Click += (sender, args) =>
             {
-
+                var temp = new Specific { Id = CryptoButton.Name };
+                this.Parent.Parent.Parent.Find<UserControl>("MVM").Content = temp;
             };
             CryptoList.Children.Add(CryptoButton);
         }
@@ -138,7 +139,7 @@ public partial class LeaderBoardPage : UserControl
             
             NewsButton.Click += (sender, args) =>
             {
-                
+                System.Diagnostics.Process.Start(News[i]?["url"]?.ToString());
             };
             NewsList.Children.Add(NewsButton);
         }

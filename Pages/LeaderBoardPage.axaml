@@ -13,15 +13,32 @@
     <Grid ColumnDefinitions="*,*,4,*" RowDefinitions="*,*,*"> <!-- TODO Modals-->
         <DockPanel Name="CryptoInfo" PointerPressed="CryptoInfoClicked" Grid.Column="0" Grid.Row="0"> <!-- Add Modal -->
             <TextBlock Text="Crypto Info" DockPanel.Dock="Top"/>
-            <TextBlock Name="CryptoInfoTextBlock" /> <!-- TODO Make CryptoInfoTextBlock import text from a file-->
+            <TextBlock Name="CryptoInfoTextBlock" /> 
         </DockPanel>
         <ScottPlot:AvaPlot Name="LeaderBoardChart" Grid.Row="0" Grid.Column="1"/> <!-- Add Modal -->
         <GridSplitter Name="Splitter" Background="Black" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" /> 
-        <ScrollViewer Name="NewsFeed" Grid.Row="0" Grid.RowSpan="3" Grid.Column="3">
-            <StackPanel Name="NewsFeedStackPanel"/>
-        </ScrollViewer>
+        <DockPanel Name="CryptoFeedDockPanel" Grid.Row="0" Grid.RowSpan="3" Grid.Column="3">
+            
+            <ScrollViewer Name="NewsFeed" >
+                <StackPanel Name="NewsFeedStackPanel"/>
+            </ScrollViewer>
+        </DockPanel>
         <ScrollViewer Name="CryptoList" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <StackPanel Name="CryptoListStackPanel"/>
+            <StackPanel Name="CryptoListStackPanel">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <Button Content="Price"></Button> <!-- TODO add sorting algo to allow for these button events to sort the following scroll viewer-->
+                        <Button Content="A-Z"></Button>
+                        <Button Content="MarketCap"></Button>
+                        <Button Content="Supply"></Button>
+                        <Button Content="MaxSupply"></Button>
+                        <Button Content="Rank"></Button>
+                        <Button Content="VolumeChange24H"></Button>
+                        <Button Content="VolumeChange24H%"></Button>
+                    </StackPanel>
+                </ScrollViewer>
+            </StackPanel>
+            
         </ScrollViewer>
             <!-- Add Modal -->
     </Grid>

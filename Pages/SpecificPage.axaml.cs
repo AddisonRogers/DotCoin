@@ -18,7 +18,7 @@ public partial class Specific : UserControl
         InitializeComponent();
     }
 
-    public string Id { get; set; }
+    public string? Id { get; set; }
     private void SetText(double rate = 0)
     {
         var name = Id;

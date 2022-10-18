@@ -9,6 +9,9 @@
     </PropertyGroup>
     <ItemGroup>
         <None Remove=".gitignore" />
+        <None Update="Pages\CryptoInfo.txt">
+          <DependentUpon>LeaderBoardPage.axaml</DependentUpon>
+        </None>
     </ItemGroup>
     <ItemGroup>
         <!--This helps with theme dll-s trimming.
