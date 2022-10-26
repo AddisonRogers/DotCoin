@@ -101,7 +101,7 @@ public partial class LeaderBoardPage : UserControl
         //TODO Make the chart use a time system rather than relying off units so that I can upload a full minute for the past like year
     }*/
 
-    private void CryptoInfoTextBlockSet() => this.Find<TextBlock>("CryptoInfoTextBlock").Text = System.IO.File.ReadAllText("C:\\Users\\icare\\Documents\\Coding\\DotCoin\\Pages\\CryptoInfo.txt");
+    private void CryptoInfoTextBlockSet() => this.Find<TextBlock>("CryptoInfoTextBlock").Text = System.IO.File.ReadAllText("C:\\Users\\Addison\\RiderProjects\\DotCoin\\Pages\\CryptoInfo.txt");
     private void CryptoSet()
     {
         var AllCrypto = Fetch.GetAll();
@@ -127,7 +127,7 @@ public partial class LeaderBoardPage : UserControl
     }
     private void NewsSet()
     {
-        var News = Fetch.NewsGet();
+        var News = Fetch.NewsGet(5);
         var NewsList = this.Find<StackPanel>("NewsFeedStackPanel");
         for (var i = 0; i < News!.AsArray().Count; i++)
         {
@@ -148,4 +148,6 @@ public partial class LeaderBoardPage : UserControl
     {
         
     }
+
+    
 }

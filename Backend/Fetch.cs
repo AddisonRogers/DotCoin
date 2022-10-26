@@ -93,12 +93,24 @@ namespace DotCoin3
         public static JsonNode? NewsGet(int pages = 0)
         {
             using var client = new HttpClient();
-            if (pages == 0) {return JsonNode.Parse(client.GetStringAsync("https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true").Result)?["results"];}
-            for (var i = 0; i < pages; i++)
+            if (pages == 0) return JsonNode.Parse(client.GetStringAsync("https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true").Result)?["results"];
+            string? json;
+            json = (JsonNode.Parse(client.GetStringAsync($"https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true&page=1").Result)?["results"])?.ToString();
+            json = json?.Remove(json.Length-3,3); // Hello World 
+            json = json?.Insert(json.Length, ",\n");
+            for (var i = 2; i < pages -1; i++)
             {
-                //https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true&page=2
+                Thread.Sleep(210);
+                string? temp = null;
+                temp = (JsonNode.Parse(client.GetStringAsync($"https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true&page={i}").Result)?["results"])?.ToString();
+                temp = temp.Remove(0, 3);
+                temp = temp.Remove(temp.Length - 3, 3);
+                temp = temp.Insert(temp.Length, ",");
+                json += temp;
             }
-            return null;
+            Thread.Sleep(210);
+            json += (JsonNode.Parse(client.GetStringAsync($"https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true&page={pages}").Result)?["results"])?.ToString().Remove(0, 1);
+            return JsonNode.Parse(json!);
         }
         public static string?[] NewsGetTitles()
         {
@@ -107,7 +119,7 @@ namespace DotCoin3
             string?[] titles = new string?[json.AsArray().Count];
             for (var i = 0; i < json.AsArray().Count; i++) titles[i] = json[i]?["title"]?.ToString();
             return titles;
-        }
+        } //This is pointless
         public static double[]? GetCryptoMarketCap(long timeValue, string? interval)
         {
             string[]? nameList = GetAllNames();

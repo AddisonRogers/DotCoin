@@ -1,8 +1,10 @@
-﻿namespace DotCoin3;
+﻿using System.Text.Json.Nodes;
+
+namespace DotCoin3;
 
 public class Sorting
 {
-    public object Sort(string type = "Price", object ToSort = null, string SortType = "Linear")
+    public JsonNode? Sort(string type = "Price", JsonNode ToSort = null, string SortType = "Linear")
     {
         if (ToSort == null)
         {
@@ -12,8 +14,8 @@ public class Sorting
         {
             switch (SortType)
             {
-                case "Linear":
-                    return LinearSort(ToSort, type);
+                case "Selection":
+                    return SelectionSort(ToSort, type);
                 case "Bubble":
                     return BubbleSort(ToSort, type);
                 case "Merge":
@@ -27,35 +29,38 @@ public class Sorting
                 case "Radix":
                     return RadixSort(ToSort, type);
                 default:
+                    return null;
                     break;
             }
         }
     }
-    private object LinearSort(object ToSort, string type)
+    //https://www.crio.do/blog/top-10-sorting-algorithms/
+    private JsonNode? SelectionSort(JsonNode? ToSort, string type)
     {
         return null;
     }
-    private object BubbleSort(object ToSort, string type)
+    private JsonNode BubbleSort(JsonNode ToSort, string type)
     {
         return null;
     }
-    private object MergeSort(object ToSort, string type)
+    private JsonNode? MergeSort(JsonNode? ToSort, string type)
+    {
+        //fast rabbit type
+        return null;
+    }
+    private JsonNode? QuickSort(JsonNode? ToSort, string type)
     {
         return null;
     }
-    private object QuickSort(object ToSort, string type)
+    private JsonNode? HeapSort(JsonNode? ToSort, string type)
     {
         return null;
     }
-    private object HeapSort(object ToSort, string type)
+    private JsonNode? InsertionSort(JsonNode? ToSort, string type)
     {
         return null;
     }
-    private object InsertionSort(object ToSort, string type)
-    {
-        return null;
-    }
-    private object RadixSort(object ToSort, string type)
+    private JsonNode? RadixSort(JsonNode? ToSort, string type)
     {
         return null;
     }
