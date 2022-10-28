@@ -9,7 +9,7 @@ using DotCoin3.Pages;
 
 namespace DotCoin3
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window 
     {
         public MainWindow()
         {

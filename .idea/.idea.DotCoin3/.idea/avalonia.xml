@@ -10,12 +10,15 @@
         <entry key="DotCoin3/error page.axaml" value="DotCoin3/DotCoin3.csproj" />
         <entry key="DotCoin3/styles.axaml" value="DotCoin3/DotCoin3.csproj" />
         <entry key="MainWindow.axaml" value="DotCoin3.csproj" />
+        <entry key="Pages/CryptoInfoModal.axaml" value="DotCoin3.csproj" />
         <entry key="Pages/Error_Page.axaml" value="DotCoin3.csproj" />
         <entry key="Pages/LeaderBoardPage.axaml" value="DotCoin3.csproj" />
         <entry key="Pages/LeaderBoardPage.axmal.styles.axaml" value="DotCoin3.csproj" />
         <entry key="Pages/LeaderBoardPageStyles.axaml" value="DotCoin3.csproj" />
+        <entry key="Pages/Modals/CryptoInfoModal.axaml" value="DotCoin3.csproj" />
         <entry key="Pages/SettingsPage.axaml" value="DotCoin3.csproj" />
         <entry key="Pages/Specific.axaml" value="DotCoin3.csproj" />
+        <entry key="Pages/SpecificModal.axaml" value="DotCoin3.csproj" />
         <entry key="Pages/SpecificPage.axaml" value="DotCoin3.csproj" />
         <entry key="Server/ServerMain.axaml" value="DotCoin3.csproj" />
       </map>

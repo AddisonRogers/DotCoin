@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -12,6 +15,9 @@ namespace DotCoin3.Pages;
 
 public partial class LeaderBoardPage : UserControl
 {
+    Window MW;
+    bool ModalOpen = false;
+    Window CurrentModal = null;
     public LeaderBoardPage()
     {
         InitializeComponent();
@@ -20,10 +26,12 @@ public partial class LeaderBoardPage : UserControl
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
+        
     }
 
-    private void Loaded(object? sender, EventArgs e)
+    private void Loaded(object? sender, EventArgs e) //TODO make the sort buttons usable
     {
+        MW = (Window)this.Parent.Parent.Parent;
         //LeaderBoardChartSet();
         CryptoInfoTextBlockSet();
         CryptoSet();
@@ -33,9 +41,13 @@ public partial class LeaderBoardPage : UserControl
         dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
         dispatcherTimer.Start();
     }
-    private void dispatcherTimer_Tick(object? sender, EventArgs e)
+    private void dispatcherTimer_Tick(object? sender, EventArgs e) //TODO Add + optimize total market cap
     {
         //LeaderBoardChartSet();
+        if (CurrentModal != null)
+        {
+            ModalOpen = true;
+        }
     }
 
     /*private void LeaderBoardChartSet()
@@ -101,7 +113,12 @@ public partial class LeaderBoardPage : UserControl
         //TODO Make the chart use a time system rather than relying off units so that I can upload a full minute for the past like year
     }*/
 
-    private void CryptoInfoTextBlockSet() => this.Find<TextBlock>("CryptoInfoTextBlock").Text = System.IO.File.ReadAllText("C:\\Users\\Addison\\RiderProjects\\DotCoin\\Pages\\CryptoInfo.txt");
+    private void CryptoInfoTextBlockSet() => this.Find<TextBlock>("CryptoInfoTextBlock").Text = System.IO.File.ReadAllText("C:\\Users\\Addison\\RiderProjects\\DotCoin\\Pages\\CryptoInfo.txt"); //TODO this
+    
+    //var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly(). CodeBase);
+    //var iconPath = Path.Combine(outPutDirectory, "Folder\\Img.jpg");
+    //string icon_path = new Uri(iconPath ).LocalPath;
+    
     private void CryptoSet()
     {
         var AllCrypto = Fetch.GetAll();
@@ -125,29 +142,41 @@ public partial class LeaderBoardPage : UserControl
             CryptoList.Children.Add(CryptoButton);
         }
     }
-    private void NewsSet()
+    private void NewsSet() //TODO make it so when scroll down it adds another page
     {
-        var News = Fetch.NewsGet(5);
+        var News = Fetch.NewsGet(5); //TODO make it so it doesn't take that long
         var NewsList = this.Find<StackPanel>("NewsFeedStackPanel");
         for (var i = 0; i < News!.AsArray().Count; i++)
         {
             var NewsButton = new Button
             {
-                Content = News[i]?["title"]?.ToString()
+                Content = News[i]?["title"]?.ToString(),
+                Name =  News[i]?["url"]?.ToString()
                 //NewsTextBlock.Classes = 
             };
-            
-            NewsButton.Click += (sender, args) =>
-            {
-                System.Diagnostics.Process.Start(News[i]?["url"]?.ToString());
-            };
+            NewsButton.Click += (sender, args) => Process.Start(new ProcessStartInfo("cmd", $"/c start {(sender as Button).Name.Replace("&", "^&")}") { CreateNoWindow = true });
             NewsList.Children.Add(NewsButton);
         }
     }
-    private void CryptoInfoClicked(object? sender, PointerPressedEventArgs e)
+    private void CryptoInfoClicked(object? sender, PointerPressedEventArgs e) //TODO this 
     {
-        
+        var smth = new CryptoInfoModal()
+        {
+            Height = (MW.Height)/2,
+            Width = (MW.Width)/2,
+            title = "Crypto Info",
+            info = System.IO.File.ReadAllText("C:\\Users\\Addison\\RiderProjects\\DotCoin\\Pages\\CryptoInfo.txt")
+        };
+        smth.Show((Window)MW);
+        CurrentModal = smth;
     }
-
-    
+    private void InputElement_OnPointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (ModalOpen)
+        {
+            CurrentModal.Close();
+            ModalOpen = false;
+            CurrentModal = null;
+        }
+    }
 }

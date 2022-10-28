@@ -86,7 +86,7 @@ namespace DotCoin3
             string?[,] rates = new string?[json!.AsArray().Count,2];
             for (var i = 0; i < json.AsArray().Count; i++) {rates[i, 0] = json[i]?["symbol"]?.ToString(); rates[i, 1] = json[i]?["rateUsd"]?.ToString();}
             if (rate == null) return rates;
-            for (var i = 0; i < rates.Length; i++) { if (rates[i, 0] == rate) return new string?[,] {{rates[i, 0], rates[i, 1]}}; }
+            for (var i = 0; i < rates.Length; i++) { if (rates[i, 0] == rate) return new string?[,] {{rates[i, 0], rates[i, 1]}}; } //TODO Errror "Index was outside the bounds of the array"
             return null;
         }
         public static string GetFiat() => (new RegionInfo(System.Threading.Thread.CurrentThread.CurrentUICulture.LCID)).ToString();

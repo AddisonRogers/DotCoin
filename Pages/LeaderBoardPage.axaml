@@ -5,12 +5,13 @@
              xmlns:dotCoin3="clr-namespace:DotCoin3"
              xmlns:ScottPlot="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
              Initialized="Loaded"
+             PointerPressed="InputElement_OnPointerPressed"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="DotCoin3.Pages.LeaderBoardPage">
     <!--<UserControl.Styles>
         <StyleInclude Source="LeaderBoardPageStyles.axaml" />
     </UserControl.Styles>-->
-    <Grid ColumnDefinitions="*,*,4,*" RowDefinitions="*,*,*"> <!-- TODO Modals-->
+    <Grid ColumnDefinitions="*,*,4,*" RowDefinitions="*,*,*"> 
         <DockPanel Name="CryptoInfo" PointerPressed="CryptoInfoClicked" Grid.Column="0" Grid.Row="0"> <!-- Add Modal -->
             <TextBlock Text="Crypto Info" DockPanel.Dock="Top"/>
             <TextBlock Name="CryptoInfoTextBlock" /> 
@@ -27,14 +28,14 @@
             <StackPanel Name="CryptoListStackPanel">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto">
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <Button Content="Price"></Button> <!-- TODO add sorting algo to allow for these button events to sort the following scroll viewer-->
-                        <Button Content="A-Z"></Button>
-                        <Button Content="MarketCap"></Button>
-                        <Button Content="Supply"></Button>
-                        <Button Content="MaxSupply"></Button>
-                        <Button Content="Rank"></Button>
-                        <Button Content="VolumeChange24H"></Button>
-                        <Button Content="VolumeChange24H%"></Button>
+                        <Button Content="Price"/> <!-- TODO add sorting algo to allow for these button events to sort the following scroll viewer-->
+                        <Button Content="A-Z"/>
+                        <Button Content="MarketCap"/>
+                        <Button Content="Supply"/>
+                        <Button Content="MaxSupply"/>
+                        <Button Content="Rank"/>
+                        <Button Content="VolumeChange24H"/>
+                        <Button Content="VolumeChange24H%"/>
                     </StackPanel>
                 </ScrollViewer>
             </StackPanel>

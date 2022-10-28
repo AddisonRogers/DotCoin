@@ -9,8 +9,8 @@
         x:Class="DotCoin3.MainWindow"
         Title="DotCoin">
 
-    <Grid ColumnDefinitions ="20,25,*,*,*,*,20" RowDefinitions = "10,25,5,*,20">
-        <Button Grid.Row="1" Grid.Column="1" Click="Button_OnClick"/>
+    <Grid ColumnDefinitions ="20,60,*,*,*,*,20" RowDefinitions = "10,30,5,*,20">
+        <Button Grid.Row="1" Grid.Column="1" Click="Button_OnClick" Content="Home"/> <!--Home Button = actual icon-->
         <TextBox x:Name="SearchBar" Grid.Row="1" Grid.Column="5" FontSize="20" KeyUp="SearchBar_OnKeyUp" />
         <UserControl Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Name="MVM"/>
     </Grid>

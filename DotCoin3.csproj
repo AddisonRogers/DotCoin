@@ -39,6 +39,14 @@
         <DependentUpon>Specific.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Pages\Modals\CryptoInfoModal.axaml.cs">
+        <DependentUpon>CryptoInfoModal.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\Modals\SpecificModal.axaml.cs">
+        <DependentUpon>SpecificModal.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
     <ItemGroup>
       <AvaloniaXaml Update="Pages\LeaderBoardPageStyles.axaml">
