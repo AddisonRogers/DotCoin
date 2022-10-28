@@ -25,19 +25,20 @@
             </ScrollViewer>
         </DockPanel>
         <ScrollViewer Name="CryptoList" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Price" Click="Button_OnClick"/> 
+                <Button Content="A-Z" Click="Button_OnClick"/>
+                <Button Content="MarketCap" Click="Button_OnClick"/>
+                <Button Content="Supply" Click="Button_OnClick"/>
+                <Button Content="MaxSupply" Click="Button_OnClick"/>
+                <Button Content="Rank" Click="Button_OnClick"/>
+                <Button Content="VolumeChange24H" Click="Button_OnClick"/>
+                <Button Content="VolumeChange24H%" Click="Button_OnClick"/>
+            </StackPanel>
             <StackPanel Name="CryptoListStackPanel">
-                <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <Button Content="Price"/> <!-- TODO add sorting algo to allow for these button events to sort the following scroll viewer-->
-                        <Button Content="A-Z"/>
-                        <Button Content="MarketCap"/>
-                        <Button Content="Supply"/>
-                        <Button Content="MaxSupply"/>
-                        <Button Content="Rank"/>
-                        <Button Content="VolumeChange24H"/>
-                        <Button Content="VolumeChange24H%"/>
-                    </StackPanel>
-                </ScrollViewer>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto"/>
+            </StackPanel>
             </StackPanel>
             
         </ScrollViewer>

@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text.Json.Nodes;
 using System.Threading;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Threading;
@@ -34,7 +37,7 @@ public partial class LeaderBoardPage : UserControl
         MW = (Window)this.Parent.Parent.Parent;
         //LeaderBoardChartSet();
         CryptoInfoTextBlockSet();
-        CryptoSet();
+        CryptoSetNon();
         NewsSet();
         var dispatcherTimer = new DispatcherTimer();
         dispatcherTimer.Tick += dispatcherTimer_Tick;
@@ -119,16 +122,17 @@ public partial class LeaderBoardPage : UserControl
     //var iconPath = Path.Combine(outPutDirectory, "Folder\\Img.jpg");
     //string icon_path = new Uri(iconPath ).LocalPath;
     
-    private void CryptoSet()
+    private void CryptoSetNon(Dictionary<string,string>[] AllCrypto = null)
     {
-        var AllCrypto = Fetch.GetAll();
+        if (AllCrypto == null) AllCrypto = Sort.Convert(Fetch.GetAll());
         var CryptoList = this.Find<StackPanel>("CryptoListStackPanel");
-        for (var i = 0; i < AllCrypto.AsArray().Count; i++)
+        if (CryptoList.Children.Count > 5) CryptoList.Children.Clear();
+        for (var i = 0; i < AllCrypto.Length; i++)
         {
             var CryptoButton = new Button
             {
                 Name = AllCrypto[i]?["id"].ToString(),
-                Content = AllCrypto[i]?.ToString()
+                Content = (AllCrypto[i]?["id"] ," "+ AllCrypto[i]?["priceUsd"])   //TODO pretty
                 
                 //NewsTextBlock.Classes = 
                 //TODO Styles
@@ -179,4 +183,16 @@ public partial class LeaderBoardPage : UserControl
             CurrentModal = null;
         }
     }
+
+
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        switch (((Button)sender).Content)
+        {
+            case "Price":
+                CryptoSetNon(Sort.SelectionSort(Fetch.GetAll(), "priceUsd"));
+                break;
+        }
+    }
+    
 }
