@@ -28,7 +28,7 @@
         
             <TextBlock Name="Title" > HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</TextBlock>
             <TextBlock Name="Info"/>
-            <!-- TODO yk text and pretty -->
+            <!-- TODO Styles -->
         
     </Panel>
 </Window>

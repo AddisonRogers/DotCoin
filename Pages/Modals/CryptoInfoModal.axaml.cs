@@ -30,7 +30,7 @@ public partial class CryptoInfoModal : Window
 
     private void InputElement_OnLostFocus(object? sender, RoutedEventArgs e)
     {
-        //TODO Stop showing the modal
+        
         this.Close();
         
     }

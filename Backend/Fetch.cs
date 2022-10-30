@@ -78,27 +78,30 @@ namespace DotCoin3
             for (var i = 0; i < json.AsArray().Count; i++) names[i] = json[i]?["id"]?.ToString();
             return names;
         }
-        public static string?[,] GetRates(string rate = null)
+        public static double? GetRates(string rate = null)
         {
             using var client = new HttpClient();
             var json = JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/rates").Result)?["data"];
             if (json == null) return null;
             string?[,] rates = new string?[json!.AsArray().Count,2];
             for (var i = 0; i < json.AsArray().Count; i++) {rates[i, 0] = json[i]?["symbol"]?.ToString(); rates[i, 1] = json[i]?["rateUsd"]?.ToString();}
-            if (rate == null) return rates;
-            for (var i = 0; i < rates.Length; i++) { if (rates[i, 0] == rate) return new string?[,] {{rates[i, 0], rates[i, 1]}}; } //TODO Errror "Index was outside the bounds of the array"
+            //if (rate == null) return rates;
+            for (var i = 0; i < rates.GetLength(0); i++)
+            {
+                if (rates[i, 0] == rate) return double.Parse(rates[i, 1]);
+            } 
             return null;
         }
-        public static string GetFiat() => (new RegionInfo(System.Threading.Thread.CurrentThread.CurrentUICulture.LCID)).ToString();
-        public static JsonNode? NewsGet(int pages = 0)
+        public static string GetFiat() => (new RegionInfo(System.Threading.Thread.CurrentThread.CurrentUICulture.LCID).ISOCurrencySymbol).ToString();
+        public static JsonNode? NewsGet(int pages = 0, int offset = 0)
         {
             using var client = new HttpClient();
             if (pages == 0) return JsonNode.Parse(client.GetStringAsync("https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true").Result)?["results"];
             string? json;
-            json = (JsonNode.Parse(client.GetStringAsync($"https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true&page=1").Result)?["results"])?.ToString();
+            json = (JsonNode.Parse(client.GetStringAsync($"https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true&page={offset}").Result)?["results"])?.ToString();
             json = json?.Remove(json.Length-3,3); // Hello World 
             json = json?.Insert(json.Length, ",\n");
-            for (var i = 2; i < pages -1; i++)
+            for (var i = 2 + offset; i < pages + offset -1; i++)
             {
                 Thread.Sleep(210);
                 string? temp = null;
@@ -109,7 +112,7 @@ namespace DotCoin3
                 json += temp;
             }
             Thread.Sleep(210);
-            json += (JsonNode.Parse(client.GetStringAsync($"https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true&page={pages}").Result)?["results"])?.ToString().Remove(0, 1);
+            json += (JsonNode.Parse(client.GetStringAsync($"https://cryptopanic.com/api/v1/posts/?auth_token=95688bf064f757e2cba88fe22e9c1e67e36cdbd1&public=true&page={pages + offset}").Result)?["results"])?.ToString().Remove(0, 1);
             return JsonNode.Parse(json!);
         }
         public static string?[] NewsGetTitles()

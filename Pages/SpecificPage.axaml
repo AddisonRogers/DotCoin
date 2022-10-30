@@ -25,7 +25,7 @@
         </Grid.ColumnDefinitions>
 
         
-        <!-- TODO make styles go brr -->
+        
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="4">
             <TextBlock Name="SymbolBox" Text="Error" />
             <TextBlock Name="NameBox" Text="Error" />
@@ -40,10 +40,12 @@
             <TextBlock Name="MovingAverageBox" Text="Error" />
             <TextBlock Name="ExponentialMovingAverageBox" Text="Error"/>
         </StackPanel>
+        
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-        <Button  Name="ToDollar" Click="ToDollar_OnClick">$</Button>
-        <Button  Name="ToNative" Click="ToNative_OnClick"></Button> 
-            <!-- <Button Name="ToSearch" Click="ToSearch_OnClick">?</Button>  TODO make this work  -->
+            <Button Name="ToDollar" Click="ToDollar_OnClick">$</Button>
+            <Button Name="ToNative" Click="ToNative_OnClick"></Button>
+            <Button Name="ToSearch" Click="ToSearch_OnClick">?</Button>
+                
         </StackPanel>
         
         <ScottPlot:AvaPlot Grid.Row = "0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="4" Name="Chart"/>

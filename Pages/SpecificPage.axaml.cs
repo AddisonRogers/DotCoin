@@ -145,7 +145,11 @@ public partial class Specific : UserControl
 
     private void ToNative_OnClick(object? sender, RoutedEventArgs e)
     {
-        SetText(double.Parse(Fetch.GetRates(Fetch.GetFiat())[0,1] ?? string.Empty));
+        SetText(Fetch.GetRates(Fetch.GetFiat()) ?? 1);
     }
-    
+
+    private void ToSearch_OnClick(object? sender, RoutedEventArgs e)
+    {
+        
+    }
 }

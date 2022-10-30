@@ -32,7 +32,7 @@ public partial class LeaderBoardPage : UserControl
         
     }
 
-    private void Loaded(object? sender, EventArgs e) //TODO make the sort buttons usable
+    private void Loaded(object? sender, EventArgs e) 
     {
         MW = (Window)this.Parent.Parent.Parent;
         //LeaderBoardChartSet();
@@ -113,7 +113,6 @@ public partial class LeaderBoardPage : UserControl
         chart.Plot.XAxis.ManualTickPositions(unitdouble, unitlabel );
         chart.Refresh();
 
-        //TODO Make the chart use a time system rather than relying off units so that I can upload a full minute for the past like year
     }*/
 
     private void CryptoInfoTextBlockSet() => this.Find<TextBlock>("CryptoInfoTextBlock").Text = System.IO.File.ReadAllText("C:\\Users\\Addison\\RiderProjects\\DotCoin\\Pages\\CryptoInfo.txt"); //TODO this
@@ -132,10 +131,10 @@ public partial class LeaderBoardPage : UserControl
             var CryptoButton = new Button
             {
                 Name = AllCrypto[i]?["id"].ToString(),
-                Content = (AllCrypto[i]?["id"] ," "+ AllCrypto[i]?["priceUsd"])   //TODO pretty
+                Content = (AllCrypto[i]?["id"] ," "+ AllCrypto[i]?["priceUsd"])   
                 
                 //NewsTextBlock.Classes = 
-                //TODO Styles
+                
             };
             
             CryptoButton.Click += (sender, args) =>
@@ -146,22 +145,32 @@ public partial class LeaderBoardPage : UserControl
             CryptoList.Children.Add(CryptoButton);
         }
     }
-    private void NewsSet() //TODO make it so when scroll down it adds another page
+
+    private void NewsSet(int NewsCount = 0)
     {
-        var News = Fetch.NewsGet(5); //TODO make it so it doesn't take that long
+        var News = Fetch.NewsGet(5, NewsCount); 
         var NewsList = this.Find<StackPanel>("NewsFeedStackPanel");
         for (var i = 0; i < News!.AsArray().Count; i++)
         {
             var NewsButton = new Button
             {
                 Content = News[i]?["title"]?.ToString(),
-                Name =  News[i]?["url"]?.ToString()
+                Name = News[i]?["url"]?.ToString()
                 //NewsTextBlock.Classes = 
             };
-            NewsButton.Click += (sender, args) => Process.Start(new ProcessStartInfo("cmd", $"/c start {(sender as Button).Name.Replace("&", "^&")}") { CreateNoWindow = true });
+            NewsButton.Click += (sender, args) =>
+                Process.Start(new ProcessStartInfo("cmd", $"/c start {(sender as Button).Name.Replace("&", "^&")}")
+                    { CreateNoWindow = true });
             NewsList.Children.Add(NewsButton);
         }
+
+        var temp = new Button() { Content = "More News", Name = "" };
+        temp.Click += (sender, args) => NewsSet(NewsCount += 5);
+        NewsList.Children.Add(temp);
     }
+
+    private int NewsCount = 0;
+
     private void CryptoInfoClicked(object? sender, PointerPressedEventArgs e) //TODO this 
     {
         var smth = new CryptoInfoModal()
