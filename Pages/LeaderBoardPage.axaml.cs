@@ -44,7 +44,7 @@ public partial class LeaderBoardPage : UserControl
         dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
         dispatcherTimer.Start();
     }
-    private void dispatcherTimer_Tick(object? sender, EventArgs e) //TODO Add + optimize total market cap
+    private void dispatcherTimer_Tick(object? sender, EventArgs e) 
     {
         //LeaderBoardChartSet();
         if (CurrentModal != null)
@@ -171,7 +171,7 @@ public partial class LeaderBoardPage : UserControl
 
     private int NewsCount = 0;
 
-    private void CryptoInfoClicked(object? sender, PointerPressedEventArgs e) //TODO this 
+    private void CryptoInfoClicked(object? sender, PointerPressedEventArgs e)
     {
         var smth = new CryptoInfoModal()
         {

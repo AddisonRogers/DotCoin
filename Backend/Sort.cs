@@ -137,7 +137,7 @@ public class Sort
         return ToSort;
     }
     
-    
+    //TODO finish all the sorting algo and match it up
     private JsonNode BubbleSort(JsonNode ToSort, string type)
     {
         return null;

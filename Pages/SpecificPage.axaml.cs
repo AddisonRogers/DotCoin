@@ -45,10 +45,10 @@ public partial class Specific : UserControl
         }
         else
         {
-            this.Find<TextBlock>("MarketCapBox").Text = "Market Cap : " + Math.Round(double.Parse(coin?["marketCapUsd"]?.ToString() ?? string.Empty) * rate, 0);
-            this.Find<TextBlock>("PriceBox").Text = "Price : " + Math.Round(double.Parse(coin?["priceUsd"]?.ToString() ?? string.Empty) * rate, 2);
-            this.Find<TextBlock>("Change24HBox").Text = "Change 24H : " + Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty) * rate, 2);
-        }
+            this.Find<TextBlock>("MarketCapBox").Text = "Market Cap : " + Math.Round(double.Parse(coin?["marketCapUsd"]?.ToString() ?? string.Empty) / rate, 0);
+            this.Find<TextBlock>("PriceBox").Text = "Price : " + Math.Round(double.Parse(coin?["priceUsd"]?.ToString() ?? string.Empty) / rate, 2); //
+            this.Find<TextBlock>("Change24HBox").Text = "Change 24H : " + Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty) / rate, 2);
+        } 
         //MovingAverageBox.Text = "Moving Average : " + Math.Round(double.Parse(Indicator.MovingAverage(name)?.ToString() ?? string.Empty), 0);
     }
     private void InitializeComponent()
