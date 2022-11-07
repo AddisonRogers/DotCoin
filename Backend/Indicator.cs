@@ -20,8 +20,6 @@ namespace DotCoin3
             var prices = Fetch.History(id, timeValue, "d1");
             return prices.Sum() / prices.Length;
         }
-        //TODO TODAY
-
         //Exponential moving average (12-26 Days)
         public static (double? SMA, JsonNode History) SMA(string? id = "bitcoin", int daycount = 20)
         {
@@ -30,7 +28,6 @@ namespace DotCoin3
             for (int i = 1; i < History.AsArray().Count; i++) countlist[i] = (double)(History[i]?["priceUsd"] ?? 0); 
             return (countlist.Sum()/History.AsArray().Count, History);
         }
-
         public static double? EMA(string? id = "bitcoin", int daycount = 20)
         {
             if (daycount != 0) return ((double)(Fetch.ModHistory(id, daycount, "d1")?[0]?["priceUsd"] ?? 1) * (2 / (daycount + 1) + (EMA(id, daycount-1) ?? 0) * (1 -(2 / (daycount + 1)))));

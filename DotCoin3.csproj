@@ -53,5 +53,8 @@
       <AvaloniaXaml Update="Pages\LeaderBoardPageStyles.axaml">
         <DependentUpon>LeaderBoardPage.axaml</DependentUpon>
       </AvaloniaXaml>
+      <AvaloniaXaml Update="MainStyles.axaml">
+        <DependentUpon>MainWindow.axaml</DependentUpon>
+      </AvaloniaXaml>
     </ItemGroup>
 </Project>

@@ -63,5 +63,15 @@ namespace DotCoin3
             //this.Find<UserControl>("MVM").Content = temp;
         }
         private void Button_OnClick(object? sender, RoutedEventArgs e) => this.Find<UserControl>("MVM").Content = new LeaderBoardPage();
+
+        private void SearchBar_OnGotFocus(object? sender, RoutedEventArgs e)
+        {
+            //TODO drop down
+        }
+
+        private void SearchBar_OnLostFocus(object? sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

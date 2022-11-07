@@ -114,8 +114,6 @@ public partial class Specific : UserControl
         chart.Plot.Grid(false);
         chart.Plot.XAxis.ManualTickPositions(unitdouble, unitlabel );
         chart.Refresh();
-
-        //TODO Make the chart use a time system rather than relying off units so that I can upload a full minute for the past like year
     }
     private void StyledElement_OnInitialized(object? sender, EventArgs e)
     {
