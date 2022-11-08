@@ -93,7 +93,7 @@ public class Sort
         }
         return ToSort;
     }
-    public Dictionary<string, string>[] InsertionSort(JsonNode? ToSortJSON, string type)
+    public static Dictionary<string, string>[] InsertionSort(JsonNode? ToSortJSON, string type)
     {
         /*
          * for i = 1 to n {
@@ -115,7 +115,7 @@ public class Sort
         return ToSort;
         
     }
-    public Dictionary<string, string>[] SimpleSort(JsonNode? ToSortJSON, string type)
+    public static Dictionary<string, string>[] SimpleSort(JsonNode? ToSortJSON, string type)
     {
         /*
          * for i = 1 to n {
@@ -135,28 +135,25 @@ public class Sort
             }
         }
         return ToSort;
-    }
-    
-    //TODO finish all the sorting algo and match it up
-    private JsonNode BubbleSort(JsonNode ToSort, string type)
+    } //
+    public static Dictionary<string, string>[] BubbleSort(JsonNode ToSort, string type)
     {
         return null;
     }
-    private JsonNode? MergeSort(JsonNode? ToSort, string type)
+    public static Dictionary<string, string>[] MergeSort(JsonNode? ToSort, string type)
     {
         //fast rabbit type
         return null;
     }
-    private JsonNode? QuickSort(JsonNode? ToSort, string type)
+    public static Dictionary<string, string>[] QuickSort(JsonNode? ToSort, string type)
     {
         return null;
     }
-    private JsonNode? HeapSort(JsonNode? ToSort, string type)
+    public static Dictionary<string, string>[] HeapSort(JsonNode? ToSort, string type)
     {
         return null;
     }
-    
-    private JsonNode? RadixSort(JsonNode? ToSort, string type)
+    public static Dictionary<string, string>[] RadixSort(JsonNode? ToSort, string type)
     {
         return null;
     }

@@ -17,6 +17,16 @@ namespace DotCoin3
             client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt")); //Get an api token from coincap.io and put it in "api.txt"
             return JsonNode.Parse(client.GetStringAsync("https://api.coincap.io/v2/assets").Result)?["data"]; //add error checking
         }
+        public static double[] EffHistory(string? id, int dayCount)
+        {
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt"));
+            
+            var json = JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/assets/{id}/history?interval=d1&start={DateTimeOffset.Now.ToUnixTimeMilliseconds() - 86400000 * dayCount}&end=" + $"{DateTimeOffset.Now.ToUnixTimeMilliseconds()}").Result)?["data"];
+            var priceList = new double[json!.AsArray().Count];
+            for (var i = 0; i != json.AsArray().Count; i++) priceList[i] = double.Parse(json[i]?["priceUsd"]?.ToString()!);
+            return priceList;
+        }
         public static double[] History(string? id, long timeValue, string? interval)
         {
             using var client = new HttpClient();
@@ -82,6 +92,7 @@ namespace DotCoin3
 
             return (JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/assets?ids={symbol}").Result)?["data"])?[0] as JsonObject;
         }
+        public static double GetPrice(string? symbol) => (double)((Get(symbol)?["priceUsd"])!);
         public static string[]? GetAllNames()
         {
             var json = GetAll();
@@ -188,7 +199,16 @@ namespace DotCoin3
          */
             return null;
         }
-        
-        
+        public static (double[], double[]) MarketOpenClose(string id = "bitcoin", int timeCount = 14)
+        {
+            var history = EffHistory(id, timeCount);
+            double[] OpenCloseDiff = new double[history.Length], OpenCloseDifPercent = new double[history.Length];
+            for (int i = 1; i < history.Length; i++)
+            {
+                OpenCloseDiff[i - 1] = history[i] - history[i - 1];
+                OpenCloseDifPercent[i-1] = (OpenCloseDiff[i-1]/history[i])*100;
+            }
+            return (OpenCloseDiff, OpenCloseDifPercent);
+        }
     }
 }
