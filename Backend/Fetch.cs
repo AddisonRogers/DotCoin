@@ -11,18 +11,16 @@ namespace DotCoin3
 {
     public static class Fetch
     {
-        public static JsonNode? GetAll() 
-        {
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt")); //Get an api token from coincap.io and put it in "api.txt"
-            return JsonNode.Parse(client.GetStringAsync("https://api.coincap.io/v2/assets").Result)?["data"]; //add error checking
-        }
-        public static double[] EffHistory(string? id, int dayCount)
+        public static JsonNode? Search(string url)
         {
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt"));
-            
-            var json = JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/assets/{id}/history?interval=d1&start={DateTimeOffset.Now.ToUnixTimeMilliseconds() - 86400000 * dayCount}&end=" + $"{DateTimeOffset.Now.ToUnixTimeMilliseconds()}").Result)?["data"];
+            return JsonNode.Parse(client.GetStringAsync(url).Result);
+        }
+        public static JsonNode? GetAll() => Search("https://api.coincap.io/v2/assets")?["data"]; //add error checking
+        public static double[] EffHistory(string? id, int dayCount)
+        {
+            var json = Search($"https://api.coincap.io/v2/assets/{id}/history?interval=d1&start={DateTimeOffset.Now.ToUnixTimeMilliseconds() - 86400000 * dayCount}&end=" + $"{DateTimeOffset.Now.ToUnixTimeMilliseconds()}")["data"];
             var priceList = new double[json!.AsArray().Count];
             for (var i = 0; i != json.AsArray().Count; i++) priceList[i] = double.Parse(json[i]?["priceUsd"]?.ToString()!);
             return priceList;
@@ -85,13 +83,7 @@ namespace DotCoin3
             }
             return JsonNode.Parse(History);
         }
-        public static JsonNode? Get(string? symbol)
-        {
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt")); //Get an api token from coincap.io and put it in "api.txt"
-
-            return (JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/assets?ids={symbol}").Result)?["data"])?[0] as JsonObject;
-        }
+        public static JsonNode? Get(string? symbol) => Search($"https://api.coincap.io/v2/assets?ids={symbol}")?["data"];
         public static double GetPrice(string? symbol) => (double)((Get(symbol)?["priceUsd"])!);
         public static string[]? GetAllNames()
         {
@@ -103,10 +95,7 @@ namespace DotCoin3
         }
         public static double? GetRates(string rate = null)
         {
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt")); //Get an api token from coincap.io and put it in "api.txt"
-
-            var json = JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/rates").Result)?["data"];
+            var json = Search("https://api.coincap.io/v2/rates")?["data"];
             if (json == null) return null;
             string?[,] rates = new string?[json!.AsArray().Count,2];
             for (var i = 0; i < json.AsArray().Count; i++) {rates[i, 0] = json[i]?["symbol"]?.ToString(); rates[i, 1] = json[i]?["rateUsd"]?.ToString();}

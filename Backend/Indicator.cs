@@ -15,18 +15,10 @@ namespace DotCoin3
         //Moving average ((Since crypto crash) Days)
         //then cut off after 16th of june as thats after the latest crash
         //double unixTimestamp = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-        public static double? MovingAverage(string? id = "bitcoin")
+        public static double? MovingAverage(string? id = "bitcoin", int daycount = 14)
         {
-            var timeValue = (DateTime.Today - new DateTime(2022, 6, 16)).Days;
-            var prices = Fetch.History(id, timeValue, "d1");
+            var prices = Fetch.EffHistory(id, daycount);
             return prices.Sum() / prices.Length;
-        }
-        public static (double? SMA, JsonNode History) SMA(string? id = "bitcoin", int daycount = 20)
-        {
-            var History = Fetch.ModHistory(id, daycount, "d1") ?? throw new ArgumentNullException();
-            double[] countlist = new double[] { };
-            for (int i = 1; i < History.AsArray().Count; i++) countlist[i] = (double)(History[i]?["priceUsd"] ?? 0); 
-            return (countlist.Sum()/History.AsArray().Count, History);
         }
         public static double? EMA(string? id = "bitcoin", int daycount = 20)
         {
@@ -53,7 +45,13 @@ namespace DotCoin3
          * Upper bands and lower bands btw
          * not sure how i should indicate this but yk potato potato
          */
-        // public static (double, double) BollingerBands(string? id = "bitcoin", ) TODO later when standard deviation is done
+        //public static double MA
+        public static (double? BOLU, double? BOLD) BollingerBands(string? id = "bitcoin", int daycount = 20)
+        {
+            var SMA = MovingAverage(id, daycount);
+            var SD = StandardDeviation(id, daycount);
+            return ((SMA + SD * 2), (SMA - SD * 2));
+        }
         
         //RSI (14 Days)
         
@@ -75,16 +73,35 @@ namespace DotCoin3
             }
             return 100 - (100 / (1 + ( (Pos.Average() / daycount) / (Neg.Average() / daycount) ) ));
         }
-        //Fibonacci retracement
+        
+        public static (double conversionline, double baseline, double leadingA, double leadingB) IchimokuCloud(string? id = "bitcoin", int daycount = 14)
+        {
+            var high = High(id, daycount);
+            var low = Low(id, daycount);
 
-        //Ichimoku cloud
+            var conversionline = ((9 - high) + (9 - low)) / 2;
+            var baseline = ((26 - high) + (26 - low)) / 2;
 
-        //Standard Deviation
+            var leadingA = (conversionline + baseline) / 2;
+            var leadingB = ((52 - high) + (52 - low)) / 2;
 
-        //Average Directional Index
-
-        //Cumulative Volume Delta
-
+            return (conversionline, baseline, leadingA, leadingB); 
+        }
+        /*
+         * Price > Cloud = Price is going up
+         * Price < Cloud = Price is going down
+         * When A > B = Uptrend
+         * When B > A = Downtrend
+         */
+        public static double StandardDeviation(string? id = "bitcoin", int daycount = 14)
+        {
+            double[] history = Fetch.EffHistory(id, daycount);
+            double historyavg = history.Average(), historyvarsqsum = 0;
+            for (int i = 0; i < history.Length; i++) historyvarsqsum += (history[i] - historyavg) * (history[i] - historyavg);
+            return Math.Sqrt(historyvarsqsum / history.Length - 1);
+        }
         //Volume weighted average price
+        public static double VolumeWeightedAverage(string? id = "bitcoin") => (double)Fetch.Get(id)?["vwap24Hr"]!;
+        
     }
 }

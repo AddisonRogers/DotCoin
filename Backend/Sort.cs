@@ -12,13 +12,7 @@ public class Sort
     //Really basic usage is
     //ToSort = The JsonNode you want sorted
     //type = the identifier of how you want it sorted ie Price or Rank
-    
-    
-    private static Dictionary<string, string>[] Swap(Dictionary<string, string>[] ToSwap, int i, int j)
-    {
-        (ToSwap[i], ToSwap[j]) = (ToSwap[j], ToSwap[i]);
-        return ToSwap;
-    }
+    private static void Swap(Dictionary<string, string>[] ToSwap, int i, int j) => (ToSwap[i], ToSwap[j]) = (ToSwap[j], ToSwap[i]);
     private static (double, double) GetAB(Dictionary<string, string>[] ToSort, int i, int j, string type)
     { 
         if (type == "A-Z")
@@ -65,13 +59,6 @@ public class Sort
         return objects;
         //returning an array of: array of dictionaries
     }
-    
-    
-    
-    
-    
-    
-    
     public static Dictionary<string, string>[] SelectionSort(JsonNode ToSortJSON, string type)
     {
         /*
@@ -88,7 +75,7 @@ public class Sort
             {
                 double a,b;
                 (a,b) = GetAB(ToSort, i, j, type);
-                if (a > b) ToSort = Swap(ToSort, i, j);
+                if (a > b) Swap(ToSort, i, j);
             }
         }
         return ToSort;
@@ -109,7 +96,7 @@ public class Sort
             {
                 double a,b;
                 (a,b) = GetAB(ToSort, i, j, type);                
-                if (a < b) ToSort = Swap(ToSort, i, j);
+                if (a < b) Swap(ToSort, i, j);
             }
         }
         return ToSort;
@@ -117,12 +104,6 @@ public class Sort
     }
     public static Dictionary<string, string>[] SimpleSort(JsonNode? ToSortJSON, string type)
     {
-        /*
-         * for i = 1 to n {
-         *     for j = 1 to n {
-         *         if a[i] < a[j] {
-         *              swap a[i] and a[j]
-         */
         var ToSort = Convert(ToSortJSON);
         int n = (ToSort.Length);
         for (int i = 0; i <= n; i++)
@@ -131,30 +112,23 @@ public class Sort
             {
                 double a,b;
                 (a,b) = GetAB(ToSort, i, j, type);
-                if (a < b) ToSort = Swap(ToSort, i, j);
+                if (a < b) Swap(ToSort, i, j);
             }
         }
         return ToSort;
-    } //
-    public static Dictionary<string, string>[] BubbleSort(JsonNode ToSort, string type)
+    } 
+    public static Dictionary<string, string>[] BubbleSort(JsonNode ToSortJSON, string type)
     {
-        return null;
-    }
-    public static Dictionary<string, string>[] MergeSort(JsonNode? ToSort, string type)
-    {
-        //fast rabbit type
-        return null;
-    }
-    public static Dictionary<string, string>[] QuickSort(JsonNode? ToSort, string type)
-    {
-        return null;
-    }
-    public static Dictionary<string, string>[] HeapSort(JsonNode? ToSort, string type)
-    {
-        return null;
-    }
-    public static Dictionary<string, string>[] RadixSort(JsonNode? ToSort, string type)
-    {
-        return null;
+        var ToSort = Convert(ToSortJSON);
+        
+        for (int i = 1; i <= ToSort.Length - 1; ++i) {
+            for (int j = 0; j < ToSort.Length - i; ++j)
+            {
+                double a, b;
+                (a, b) = GetAB(ToSort, j, j + 1, type);
+                if (a > b) Swap(ToSort, j, j+1);
+            }
+        }
+        return ToSort;
     }
 }
