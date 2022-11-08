@@ -84,7 +84,7 @@ public partial class Specific : UserControl
                 Console.WriteLine(e);
             }
         }
-        double[] prices = Fetch.History(name, units+1, unittype);
+        double[] prices = Fetch.EffHistory(name, units+1);
         Console.WriteLine(prices);
         if (prices.Length != unitdouble.Length)
         {

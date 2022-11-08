@@ -10,9 +10,6 @@
     </PropertyGroup>
     <ItemGroup>
         <None Remove=".gitignore" />
-        <None Update="Pages\CryptoInfo.txt">
-          <DependentUpon>LeaderBoardPage.axaml</DependentUpon>
-        </None>
     </ItemGroup>
     <ItemGroup>
         <!--This helps with theme dll-s trimming.
@@ -56,5 +53,16 @@
       <AvaloniaXaml Update="MainStyles.axaml">
         <DependentUpon>MainWindow.axaml</DependentUpon>
       </AvaloniaXaml>
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Pages\CryptoInfo.txt" />
+      <Content Include="Pages\CryptoInfo.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <DependentUpon>LeaderBoardPage.axaml</DependentUpon>
+      </Content>
+      <None Remove="Backend\api.txt" />
+      <Content Include="Backend\api.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 </Project>

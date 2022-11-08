@@ -22,12 +22,12 @@ namespace DotCoin3
         }
         public static double? EMA(string? id = "bitcoin", int daycount = 20)
         {
-            if (daycount != 0) return ((double)(Fetch.ModHistory(id, daycount, "d1")?[0]?["priceUsd"] ?? 1) * (2 / (daycount + 1) + (EMA(id, daycount-1) ?? 0) * (1 -(2 / (daycount + 1)))));
+            if (daycount != 0) return ((double)(Fetch.EffHistory(id, daycount)?[0] ?? 1) * (2 / (daycount + 1) + (EMA(id, daycount-1) ?? 0) * (1 -(2 / (daycount + 1)))));
             return 0;
         } //TODO make this more efficent
         public static double MACD(string? id = "bitcoin") => (double)(EMA(id, 12) - EMA(id, 26));
-        public static double High(string? id = "bitcoin", int daycount = 14) => Fetch.History(id, daycount, "d1").Max();
-        public static double Low(string? id = "bitcoin", int daycount = 14) => Fetch.History(id, daycount, "d1").Min();
+        public static double High(string? id = "bitcoin", int daycount = 14) => Fetch.EffHistory(id, daycount).Max();
+        public static double Low(string? id = "bitcoin", int daycount = 14) => Fetch.EffHistory(id, daycount).Min();
         public static double TP(string? id = "bitcoin", int daycount = 14) => (High(id, daycount) + Low(id, daycount) + Fetch.GetPrice(id)) / 3;
         public static int StochasticOscillator(string? id = "bitcoin") => (int)(Fetch.GetPrice(id) - Low(id, 14) / High(id, 14) - Low(id, 14)) * 100;
         //Stochastic oscillator (General trend?)

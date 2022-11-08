@@ -11,87 +11,33 @@ namespace DotCoin3
 {
     public static class Fetch
     {
-        public static JsonNode? Search(string url)
+        public static JsonNode Search(string url)
         {
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt"));
+            
+            
+            
+            
+            
             return JsonNode.Parse(client.GetStringAsync(url).Result);
         }
-        public static JsonNode? GetAll() => Search("https://api.coincap.io/v2/assets")?["data"]; //add error checking
+        public static JsonNode GetAll() => Search("https://api.coincap.io/v2/assets")?["data"]; //add error checking
+        public static JsonNode? Get(string? symbol) => Search($"https://api.coincap.io/v2/assets")?["data"][symbol];
+        public static double GetPrice(string? symbol) => (double)((Get(symbol)?["priceUsd"])!);
+        public static string[]? GetAllNames()
+        {
+            var json = GetAll();
+            string?[] names = new string?[json.AsArray().Count];
+            for (var i = 0; i < json.AsArray().Count; i++) names[i] = json[i]?["id"]?.ToString();
+            return names;
+        }
         public static double[] EffHistory(string? id, int dayCount)
         {
             var json = Search($"https://api.coincap.io/v2/assets/{id}/history?interval=d1&start={DateTimeOffset.Now.ToUnixTimeMilliseconds() - 86400000 * dayCount}&end=" + $"{DateTimeOffset.Now.ToUnixTimeMilliseconds()}")["data"];
             var priceList = new double[json!.AsArray().Count];
             for (var i = 0; i != json.AsArray().Count; i++) priceList[i] = double.Parse(json[i]?["priceUsd"]?.ToString()!);
             return priceList;
-        }
-        public static double[] History(string? id, long timeValue, string? interval)
-        {
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt")); //Get an api token from coincap.io and put it in "api.txt"
-
-            const long d = 86400000;
-            const long h = 3600000;
-            const long m = 60000;
-            long timeperiod = 0;
-
-            switch (interval?.ToCharArray()[0].ToString())
-            {
-                case "m":
-                    timeperiod = DateTimeOffset.Now.ToUnixTimeMilliseconds() - m * int.Parse(interval?.ToCharArray()[1].ToString()!) * timeValue;
-                    break;
-                case "h":
-                    timeperiod = DateTimeOffset.Now.ToUnixTimeMilliseconds() - h * int.Parse(interval?.ToCharArray()[1].ToString()!) * timeValue;
-                    break;
-                case "d":
-                    timeperiod = DateTimeOffset.Now.ToUnixTimeMilliseconds() - d * int.Parse(interval?.ToCharArray()[1].ToString()!) * timeValue;
-                    break;
-            }
-
-            var json = JsonNode.Parse(client.GetStringAsync($"https://api.coincap.io/v2/assets/{id}/history?interval={interval}&start={timeperiod}&end=" + $"{DateTimeOffset.Now.ToUnixTimeMilliseconds()}").Result)?["data"];
-            var priceList = new double[json!.AsArray().Count];
-            for (var i = 0; i != json.AsArray().Count; i++) priceList[i] = double.Parse(json[i]?["priceUsd"]?.ToString()!);
-            return priceList;
-        }
-        public static JsonNode? ModHistory(string? id, long timeValue, string? interval)
-        {
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt")); //Get an api token from coincap.io and put it in "api.txt"
-            const long d = 86400000;
-            const long h = 3600000;
-            const long m = 60000;
-            long timeperiod = 0;
-
-            switch (interval?.ToCharArray()[0].ToString())
-            {
-                case "m":
-                    timeperiod = DateTimeOffset.Now.ToUnixTimeMilliseconds() - m * int.Parse(interval?.ToCharArray()[1].ToString()!) * timeValue;
-                    break;
-                case "h":
-                    timeperiod = DateTimeOffset.Now.ToUnixTimeMilliseconds() - h * int.Parse(interval?.ToCharArray()[1].ToString()!) * timeValue;
-                    break;
-                case "d":
-                    timeperiod = DateTimeOffset.Now.ToUnixTimeMilliseconds() - d * int.Parse(interval?.ToCharArray()[1].ToString()!) * timeValue;
-                    break;
-            } 
-
-            var time = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            var History = (client.GetStringAsync($"https://api.coincap.io/v2/assets/{id}/history?interval={interval}&start={timeperiod}&end=" + $"{time}").Result);
-            if (History.Contains("error"))
-            {
-                return null;
-            }
-            return JsonNode.Parse(History);
-        }
-        public static JsonNode? Get(string? symbol) => Search($"https://api.coincap.io/v2/assets?ids={symbol}")?["data"];
-        public static double GetPrice(string? symbol) => (double)((Get(symbol)?["priceUsd"])!);
-        public static string[]? GetAllNames()
-        {
-            var json = GetAll();
-            if (json == null) return null;
-            string?[] names = new string?[json.AsArray().Count];
-            for (var i = 0; i < json.AsArray().Count; i++) names[i] = json[i]?["id"]?.ToString();
-            return names;
         }
         public static double? GetRates(string rate = null)
         {
@@ -137,14 +83,14 @@ namespace DotCoin3
             for (var i = 0; i < json.AsArray().Count; i++) titles[i] = json[i]?["title"]?.ToString();
             return titles;
         } //This is pointless
-        public static double[]? GetCryptoMarketCap(long timeValue, string? interval)
+        public static double[]? GetCryptoMarketCap(int timeValue)
         {
             string[]? nameList = GetAllNames();
             object[] array = new Object[nameList!.Length]; 
             for (int i = 0; i != array.Length; i++) array[i] = new List<double>();
             for(int i = 0; i != array.Length; i++)
             {
-                var json = History(nameList[i], timeValue, interval); 
+                var json = EffHistory(nameList[i], timeValue); 
                 for (var j = 0; j != json.Length; j++) ((List<double>)array[i]).Add(json[j]);
                 Thread.Sleep(500);
             }
