@@ -7,20 +7,25 @@ using System.Text.Json.Nodes;
 using System.Threading;
 using Avalonia.X11;
 
+
 namespace DotCoin3
 {
     public static class Fetch
     {
         public static JsonNode Search(string url)
         {
+            var cache = Cache.Check(url);
+            if (cache != null) return JsonNode.Parse(cache)!;
+            
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt"));
             
+            Cache.Log(url);
             
+            var result = client.GetStringAsync(url).Result;
+            Cache.Log(result);
             
-            
-            
-            return JsonNode.Parse(client.GetStringAsync(url).Result);
+            return JsonNode.Parse(result);
         }
         public static JsonNode GetAll() => Search("https://api.coincap.io/v2/assets")?["data"]; //add error checking
         public static JsonNode? Get(string? symbol) => Search($"https://api.coincap.io/v2/assets")?["data"][symbol];
