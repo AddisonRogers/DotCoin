@@ -49,7 +49,17 @@ public partial class Specific : UserControl
             this.Find<TextBlock>("PriceBox").Text = "Price : " + Math.Round(double.Parse(coin?["priceUsd"]?.ToString() ?? string.Empty) / rate, 2); //
             this.Find<TextBlock>("Change24HBox").Text = "Change 24H : " + Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty) / rate, 2);
         } 
-        //MovingAverageBox.Text = "Moving Average : " + Math.Round(double.Parse(Indicator.MovingAverage(name)?.ToString() ?? string.Empty), 0);
+        this.Find<TextBlock>("MovingAverage").Text = "Moving Average : " + Math.Round(double.Parse(Indicator.MovingAverage(name)?.ToString() ?? string.Empty), 0);
+        this.Find<TextBlock>("EMA").Text = "EMA : " + Math.Round(double.Parse(Indicator.EMA(name)?.ToString() ?? string.Empty), 0);
+        this.Find<TextBlock>("MACD").Text = "MACD : " + Math.Round(double.Parse(Indicator.MACD(name).ToString()), 0);
+        this.Find<TextBlock>("High").Text = "2 Week High : " + Math.Round(double.Parse(Indicator.High(name).ToString()), 0);
+        this.Find<TextBlock>("Low").Text = "2 Week Low : " + Math.Round(double.Parse(Indicator.Low(name).ToString()), 0);
+        
+        this.Find<TextBlock>("StochasticOscillator").Text = "Stochastic Oscillator : " + Math.Round(double.Parse(Indicator.StochasticOscillator(name).ToString()), 0);
+        this.Find<TextBlock>("BollingerBands").Text = "Bollinger Bands : " + Math.Round(double.Parse(Indicator.BollingerBands(name).ToString()), 0);
+        this.Find<TextBlock>("RSI").Text = "RSI : " + Math.Round(double.Parse(Indicator.RSI(name).ToString()), 0);
+        this.Find<TextBlock>("IchimokuCloud").Text = "Ichimoku Cloud : " + Math.Round(double.Parse(Indicator.IchimokuCloud(name).ToString()), 0);
+        this.Find<TextBlock>("VolumeWeightedAverage").Text = "VolumeWeightedAverage : " + Math.Round(double.Parse(Indicator.VolumeWeightedAverage(name).ToString()), 0);
     }
     private void InitializeComponent()
     {

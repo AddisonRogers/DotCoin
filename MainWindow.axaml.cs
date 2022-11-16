@@ -14,6 +14,7 @@ namespace DotCoin3
         public MainWindow()
         {
             InitializeComponent();
+            //Cache.MakeCache();
             var temp = new LeaderBoardPage(){};
             
             MVM.Content = temp;
@@ -72,6 +73,11 @@ namespace DotCoin3
         private void SearchBar_OnLostFocus(object? sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void TopLevel_OnClosed(object? sender, EventArgs e)
+        {
+            Cache.BinCache();
         }
     }
 }

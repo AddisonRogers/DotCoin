@@ -4,14 +4,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Initialized="StyledElement_OnInitialized"
         xmlns:dotCoin3="clr-namespace:DotCoin3"
-        
+        Closed="TopLevel_OnClosed"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="DotCoin3.MainWindow"
         Title="DotCoin">
 
     <Grid ColumnDefinitions ="20,60,*,*,*,*,20" RowDefinitions = "10,30,5,*,20">
         <Button Grid.Row="1" Grid.Column="1" Click="Button_OnClick" Content="Home"/> <!--Home Button = actual icon-->
-        <TextBox x:Name="SearchBar" Grid.Row="1" Grid.Column="5" FontSize="20" KeyUp="SearchBar_OnKeyUp" GotFocus="SearchBar_OnGotFocus" LostFocus="SearchBar_OnLostFocus"/>
+        <TextBox x:Name="SearchBar" Grid.Row="1" Grid.Column="5" FontSize="20" KeyUp="SearchBar_OnKeyUp"  />
         <UserControl Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Name="MVM"/>
     </Grid>
 

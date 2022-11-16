@@ -15,16 +15,17 @@ namespace DotCoin3
         //Moving average ((Since crypto crash) Days)
         //then cut off after 16th of june as thats after the latest crash
         //double unixTimestamp = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-        public static double? MovingAverage(string? id = "bitcoin", int daycount = 14)
+        
+        public static double? MovingAverage(string? id, int daycount = 14)
         {
             var prices = Fetch.EffHistory(id, daycount);
             return prices.Sum() / prices.Length;
         }
         public static double? EMA(string? id = "bitcoin", int daycount = 20)
-        {
+        { 
             if (daycount != 0) return ((double)(Fetch.EffHistory(id, daycount)?[0] ?? 1) * (2 / (daycount + 1) + (EMA(id, daycount-1) ?? 0) * (1 -(2 / (daycount + 1)))));
             return 0;
-        } //TODO make this more efficent
+        } 
         public static double MACD(string? id = "bitcoin") => (double)(EMA(id, 12) - EMA(id, 26));
         public static double High(string? id = "bitcoin", int daycount = 14) => Fetch.EffHistory(id, daycount).Max();
         public static double Low(string? id = "bitcoin", int daycount = 14) => Fetch.EffHistory(id, daycount).Min();

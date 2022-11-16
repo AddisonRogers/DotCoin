@@ -26,7 +26,7 @@
 
         
         
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="4">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
             <TextBlock Name="SymbolBox" Text="Error" />
             <TextBlock Name="NameBox" Text="Error" />
             <TextBlock Name="SupplyBox" Text="Error" />
@@ -36,9 +36,20 @@
             <TextBlock Name="PriceBox" Text="Error" />
             <TextBlock Name="Change24HBox" Text="Error" />
             <TextBlock Name="ChangeP24HBox" Text="Error" />
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2">
+            <TextBlock Name="MovingAverage" Text="Error" />
+            <TextBlock Name="EMA" Text="Error" />
+            <TextBlock Name="MACD" Text="Error" />
+            <TextBlock Name="High" Text="Error" />
 
-            <TextBlock Name="MovingAverageBox" Text="Error" />
-            <TextBlock Name="ExponentialMovingAverageBox" Text="Error"/>
+            <TextBlock Name="Low" Text="Error" />
+            <TextBlock Name="StochasticOscillator" Text="Error" />
+            <TextBlock Name="BollingerBands" Text="Error" />
+
+            <TextBlock Name="RSI" Text="Error" />
+            <TextBlock Name="IchimokuCloud" Text="Error"/>
+            <TextBlock Name="VolumeWeightedAverage" Text="Error"/>
         </StackPanel>
         
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">

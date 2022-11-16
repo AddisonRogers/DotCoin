@@ -28,7 +28,16 @@ namespace DotCoin3
             return JsonNode.Parse(result);
         }
         public static JsonNode GetAll() => Search("https://api.coincap.io/v2/assets")?["data"]; //add error checking
-        public static JsonNode? Get(string? symbol) => Search($"https://api.coincap.io/v2/assets")?["data"][symbol];
+
+        public static JsonNode? Get(string? symbol)
+        {
+            var temp = Search($"https://api.coincap.io/v2/assets")["data"];
+            for (int i = 0; i < temp.AsArray().Count; i++)
+            {
+                if (temp[i]["id"].ToString() == symbol) return temp[i];
+            }
+            return null;
+        } 
         public static double GetPrice(string? symbol) => (double)((Get(symbol)?["priceUsd"])!);
         public static string[]? GetAllNames()
         {
@@ -139,7 +148,7 @@ namespace DotCoin3
          */
             return null;
         }
-        public static (double[], double[]) MarketOpenClose(string id = "bitcoin", int timeCount = 14)
+        public static (double[], double[]) MarketOpenClose(string id = "bitcoin", int timeCount = 14) //TODO I NEED TO CACHE THIS
         {
             var history = EffHistory(id, timeCount);
             double[] OpenCloseDiff = new double[history.Length], OpenCloseDifPercent = new double[history.Length];

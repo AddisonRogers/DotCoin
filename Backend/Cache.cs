@@ -14,24 +14,37 @@ public class Cache
 {
     public static void MakeCache()
     {
-        System.IO.File.Create("Cache.txt");
-        for (int i = 0; i < 2; i++) Log("");
+        if (!System.IO.File.Exists("Cache.txt"))
+        {
+            System.IO.File.Create("Cache.txt");
+            for (int i = 0; i < 2; i++) Log("");
+        }
     }
-    public static void BinCache() => System.IO.File.Delete("Cache.txt");
+    public static void BinCache() => Console.WriteLine("e");//System.IO.File.Delete("Cache.txt");
     public static void Log(string data)
-    {
+    { 
         using var writer = System.IO.File.AppendText("Cache.txt");
         writer.WriteLine(data);
+        writer.Close();
     }
     public static string? Check(string key)
     {
-        var reader = System.IO.File.ReadAllLines("Cache.txt");
-        for (int i = 0; i < reader.Length; i++)
-            if (reader[i] == key)
-            {
-                Queue(key);
-                return reader[i + 1];
-            }
+        string[] reader;
+        try
+        {
+            reader = System.IO.File.ReadAllLines("Cache.txt");
+            for (int i = 0; i < reader.Length; i++)
+                if (reader[i] == key)
+                {
+                    Queue(key);
+                    return reader[i + 1];
+                }
+            return null;
+        }
+        catch (Exception e)
+        {
+            MakeCache();
+        }
         return null;
     }
 
@@ -42,7 +55,7 @@ public class Cache
         File.WriteAllLines("Cache.txt", Read);
     }
 
-    public static int Find(string[] Array, string Key)
+    public static int Find(string[]? Array, string Key)
     {
         for (int i = 0; i < Array.Length; i++)
         {
@@ -50,7 +63,7 @@ public class Cache
         }
         return -1;
     }
-    private static void EditCacheKey(string Key, string NewText)
+    private static void UpdateCacheKey(string Key, string NewText)
     {
         string[] Read = File.ReadAllLines("Cache.txt");
         Read[Find(Read, Key)] = NewText;
@@ -66,11 +79,11 @@ public class Cache
     private static void Queue(string key)
     {
         string[] Read = File.ReadAllLines("Cache.txt");
+        if (Read[0].Split("#DOT#").Contains(key)) return;
         if (Read[0] != "") Read[0] += "#DOT#";
         Read[0] += key;
         File.WriteAllLines("Cache.txt", Read);
     }
-    
     private static void DeQueue(string key)
     {
         string[] Read = File.ReadAllLines("Cache.txt"), Queues = Read[0].Split("#DOT#");
