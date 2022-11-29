@@ -70,7 +70,7 @@ namespace DotCoin3
 
         private void SearchBar_OnGotFocus(object? sender, RoutedEventArgs e)
         {
-            //TODO drop down
+            
         }
 
         private void SearchBar_OnLostFocus(object? sender, RoutedEventArgs e)

@@ -167,6 +167,27 @@ public partial class LeaderBoardPage : UserControl
             case "Price":
                 CryptoSetNon(Sort.SelectionSort(Fetch.GetAll(), "priceUsd"));
                 break;
+            case "A-Z":
+                CryptoSetNon(Sort.SimpleSort(Fetch.GetAll(), "id"));
+                break;
+            case "MarketCap":
+                CryptoSetNon(Sort.BubbleSort(Fetch.GetAll(), "marketCapUsd"));
+                break;
+            case "Supply":
+                CryptoSetNon(Sort.InsertionSort(Fetch.GetAll(), "supply"));
+                break;
+            case "MaxSupply":
+                CryptoSetNon(Sort.SelectionSort(Fetch.GetAll(), "maxSupply"));
+                break;
+            case "Rank":
+                CryptoSetNon(Sort.SimpleSort(Fetch.GetAll(), "rank"));
+                break;
+            case "VolumeChange24H":
+                CryptoSetNon(Sort.BubbleSort(Fetch.GetAll(), "volumeChange24H"));
+                break;
+            case "VolumeChange24H%":
+                CryptoSetNon(Sort.InsertionSort(Fetch.GetAll(), "changePercent24Hr"));
+                break;
         }
     }
     

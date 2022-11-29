@@ -67,14 +67,6 @@ public partial class Specific : UserControl
     }
     private async void Chartstart(bool ran = false)
     {
-        /*double[] dataX = new double[] { 1, 2, 3, 4, 5 };
-        double[] dataY = new double[] { 1, 4, 9, 16, 25 };
-        WpfPlot1.Plot.AddScatter(dataX, dataY);
-        WpfPlot1.Refresh();*/ 
-        
-        // Fetch history works as : ID, Amount of units, Unit type
-        // Ie Bitcoin, 2, D1 for bitcoin for the last 2 days
-        
         var name = Id;
         int units;
         string unittype;

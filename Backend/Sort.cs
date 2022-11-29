@@ -5,13 +5,7 @@ using System.Text.Json.Nodes;
 namespace DotCoin3;
 
 public class Sort
-{ //So this can easily be changed into a better reusable class but for the purpose of my use case I am only sorting stuff once.
-    //https://www.crio.do/blog/top-10-sorting-algorithms/
-    
-    
-    //Really basic usage is
-    //ToSort = The JsonNode you want sorted
-    //type = the identifier of how you want it sorted ie Price or Rank
+{ 
     private static void Swap(Dictionary<string, string>[] ToSwap, int i, int j) => (ToSwap[i], ToSwap[j]) = (ToSwap[j], ToSwap[i]);
     private static (double, double) GetAB(Dictionary<string, string>[] ToSort, int i, int j, string type)
     { 

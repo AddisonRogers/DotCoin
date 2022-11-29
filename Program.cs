@@ -20,11 +20,8 @@ namespace DotCoin3
     }
 }
 
-// TODO A-Z etc sorting linked
-/*
-    TODO Show the predicted Price
+/* TODO A-Z etc sorting linked
+    
     TODO Show crypto market cap as graph (Fully rely on cache and only search it once per boot as otherwise shit will hit the fan
     TODO Crypto Info
-    TODO Error page suggestions for the search
-TODO Search drop down and suggestion ??
-TODO Reformat and speed up cache by logging everything into different sections ie all of the cryptos current and all of the cryptos history with dotsearch only updating the first one. Total every 5 seconds (as its one api request)*/
+    */
