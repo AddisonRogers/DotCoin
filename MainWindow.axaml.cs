@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Themes.Fluent;
 using DotCoin3.Pages;
 
@@ -18,6 +19,8 @@ namespace DotCoin3
             var temp = new LeaderBoardPage(){};
             
             MVM.Content = temp;
+
+            this.FindControl<AutoCompleteBox>("AutoCompleteBox").Items = Fetch.GetAllNames();
             //Set Frame content
         }
         private void NameBox(string nameRaw) //postbox

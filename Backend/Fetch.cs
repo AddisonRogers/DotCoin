@@ -148,7 +148,7 @@ namespace DotCoin3
          */
             return null;
         }
-        public static (double[], double[]) MarketOpenClose(string id = "bitcoin", int timeCount = 14) //TODO I NEED TO CACHE THIS
+        public static (double[], double[]) MarketOpenClose(string id = "bitcoin", int timeCount = 14) 
         {
             var history = EffHistory(id, timeCount);
             double[] OpenCloseDiff = new double[history.Length], OpenCloseDifPercent = new double[history.Length];
