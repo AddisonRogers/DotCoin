@@ -23,6 +23,7 @@ public partial class LeaderBoardPage : UserControl
     public LeaderBoardPage()
     {
         InitializeComponent();
+        LeaderBoardChartSet();
     }
 
     private void InitializeComponent()
@@ -53,7 +54,7 @@ public partial class LeaderBoardPage : UserControl
     }
 
     public bool ran = false;
-    private void LeaderBoardChartSet() //TODO only run this once somehow on the program
+    private void LeaderBoardChartSet() 
     {
         int units = 7;
         string[] unitlabel = new string[units];
@@ -81,7 +82,7 @@ public partial class LeaderBoardPage : UserControl
         ran = true;
     }
 
-    private void CryptoInfoTextBlockSet() => this.Find<TextBlock>("CryptoInfoTextBlock").Text = System.IO.File.ReadAllText("C:\\Users\\Addison\\RiderProjects\\DotCoin\\Pages\\CryptoInfo.txt"); //TODO this
+    private void CryptoInfoTextBlockSet() => this.Find<TextBlock>("CryptoInfoTextBlock").Text = System.IO.File.ReadAllText("C:\\Users\\Addison\\RiderProjects\\DotCoin\\Pages\\CryptoInfo.txt");
     
     //var outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly(). CodeBase);
     //var iconPath = Path.Combine(outPutDirectory, "Folder\\Img.jpg");
@@ -183,7 +184,7 @@ public partial class LeaderBoardPage : UserControl
                 CryptoSetNon(Sort.SimpleSort(Fetch.GetAll(), "rank"));
                 break;
             case "VolumeChange24H":
-                CryptoSetNon(Sort.BubbleSort(Fetch.GetAll(), "volumeChange24H"));
+                CryptoSetNon(Sort.BubbleSort(Fetch.GetAll(), "volumeUsd24Hr"));
                 break;
             case "VolumeChange24H%":
                 CryptoSetNon(Sort.InsertionSort(Fetch.GetAll(), "changePercent24Hr"));

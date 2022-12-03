@@ -20,7 +20,7 @@ namespace DotCoin3
             
             MVM.Content = temp;
 
-            this.FindControl<AutoCompleteBox>("AutoCompleteBox").Items = Fetch.GetAllNames();
+            this.FindControl<AutoCompleteBox>("SearchBar").Items = Fetch.GetAllNames();
             //Set Frame content
         }
         private void NameBox(string nameRaw) //postbox
@@ -80,7 +80,7 @@ namespace DotCoin3
 
         private void TopLevel_OnClosed(object? sender, EventArgs e)
         {
-            Cache.BinCache();
+            //Cache.BinCache();
         }
     }
 }

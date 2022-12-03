@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Text.Json.Nodes;
 using System.Threading;
 using Avalonia.X11;
+using static System.DateTimeOffset;
+using static System.Double;
 
 
 namespace DotCoin3
@@ -14,21 +16,12 @@ namespace DotCoin3
     {
         public static JsonNode Search(string url)
         {
-            var cache = Cache.Check(url);
-            if (cache != null) return JsonNode.Parse(cache)!;
-            
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt"));
-            
-            Cache.Log(url);
-            
             var result = client.GetStringAsync(url).Result;
-            Cache.Log(result);
-            
             return JsonNode.Parse(result);
         }
         public static JsonNode GetAll() => Search("https://api.coincap.io/v2/assets")?["data"]; //add error checking
-
         public static JsonNode? Get(string? symbol)
         {
             var temp = Search($"https://api.coincap.io/v2/assets")["data"];
@@ -38,7 +31,7 @@ namespace DotCoin3
             }
             return null;
         } 
-        public static double GetPrice(string? symbol) => (double)((Get(symbol)?["priceUsd"])!);
+        public static double GetPrice(string? symbol) => Double.Parse(((string)Get(symbol)?["priceUsd"])!);
         public static string[]? GetAllNames()
         {
             var json = GetAll();
@@ -46,11 +39,16 @@ namespace DotCoin3
             for (var i = 0; i < json.AsArray().Count; i++) names[i] = json[i]?["id"]?.ToString();
             return names;
         }
-        public static double[] EffHistory(string? id, int dayCount)
+        public static double[] EffHistory(string? id, long dayCount)
         {
-            var json = Search($"https://api.coincap.io/v2/assets/{id}/history?interval=d1&start={DateTimeOffset.Now.ToUnixTimeMilliseconds() - 86400000 * dayCount}&end=" + $"{DateTimeOffset.Now.ToUnixTimeMilliseconds()}")["data"];
+            long something = (86400000 * dayCount);
+            Console.WriteLine(something); 
+            long start = Now.ToUnixTimeMilliseconds() - something;
+            Console.WriteLine(Now.ToUnixTimeMilliseconds());
+            Console.WriteLine(start);
+            JsonNode? json = Search($"https://api.coincap.io/v2/assets/{id}/history?interval=d1&start={start}&end=" + $"{Now.ToUnixTimeMilliseconds()}")["data"];
             var priceList = new double[json!.AsArray().Count];
-            for (var i = 0; i != json.AsArray().Count; i++) priceList[i] = double.Parse(json[i]?["priceUsd"]?.ToString()!);
+            for (var i = 0; i != json.AsArray().Count; i++) priceList[i] = Double.Parse(json[i]?["priceUsd"]?.ToString()!);
             return priceList;
         }
         public static double? GetRates(string rate = null)
@@ -62,7 +60,7 @@ namespace DotCoin3
             //if (rate == null) return rates;
             for (var i = 0; i < rates.GetLength(0); i++)
             {
-                if (rates[i, 0] == rate) return double.Parse(rates[i, 1]);
+                if (rates[i, 0] == rate) return Double.Parse(rates[i, 1]);
             } 
             return null;
         }

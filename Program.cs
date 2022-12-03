@@ -9,8 +9,13 @@ namespace DotCoin3
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
         // yet and stuff might break.
         [STAThread]
-        public static void Main(string[] args) => BuildAvaloniaApp()
-            .StartWithClassicDesktopLifetime(args);
+        public static void Main(string[] args)
+        {
+            //Cache.MakeCache();
+            BuildAvaloniaApp()
+                .StartWithClassicDesktopLifetime(args);
+            
+        } 
 
         // Avalonia configuration, don't remove; also used by visual designer.
         public static AppBuilder BuildAvaloniaApp()
@@ -20,8 +25,9 @@ namespace DotCoin3
     }
 }
 
-/* TODO A-Z etc sorting linked
-    
+
+    /*
     TODO Show crypto market cap as graph (Fully rely on cache and only search it once per boot as otherwise shit will hit the fan
     TODO Crypto Info
+    TODO Styles
     */

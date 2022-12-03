@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
-using Avalonia.Controls.Shapes;
+using System.Threading;
 using Avalonia.Threading;
 
 namespace DotCoin3;
@@ -14,25 +11,55 @@ public class Cache
 {
     public static void MakeCache()
     {
-        if (!System.IO.File.Exists("Cache.txt"))
+        if (File.Exists("Cache.txt")) File.Delete("Cache.txt");
+        File.Create("Cache.txt");
+        try
         {
-            System.IO.File.Create("Cache.txt");
-            for (int i = 0; i < 2; i++) Log("");
+            using var writer = File.AppendText("Cache.txt");
+            for (int i = 0; i < 2; i++) writer.WriteLine("");
+            writer.Close();
+        }
+        catch
+        {
+            return;
         }
     }
-    public static void BinCache() => Console.WriteLine("e");//System.IO.File.Delete("Cache.txt");
+    public static void BinCache()
+    {
+        try
+        {
+            File.Delete("Cache.txt");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return;
+        }
+        
+    } 
     public static void Log(string data)
-    { 
-        using var writer = System.IO.File.AppendText("Cache.txt");
-        writer.WriteLine(data);
-        writer.Close();
+    {
+        bool flag = true;
+        int count = 0;
+        while (flag)
+        {
+            try
+            {
+                using var writer = File.AppendText("Cache.txt");
+                writer.WriteLine(data);
+                writer.Close();
+                flag = false;
+            }
+            catch
+            {
+            }
+        }
     }
     public static string? Check(string key)
     {
-        string[] reader;
         try
         {
-            reader = System.IO.File.ReadAllLines("Cache.txt");
+            var reader = File.ReadAllLines("Cache.txt");
             for (int i = 0; i < reader.Length; i++)
                 if (reader[i] == key)
                 {
@@ -41,9 +68,9 @@ public class Cache
                 }
             return null;
         }
-        catch (Exception e)
+        catch
         {
-            MakeCache();
+            return null;
         }
         return null;
     }
@@ -52,15 +79,11 @@ public class Cache
     {
         string[] Read = File.ReadAllLines("Cache.txt");
         Read[LineNumber] = NewText;
-        File.WriteAllLines("Cache.txt", Read);
     }
 
-    public static int Find(string[]? Array, string Key)
+    private static int Find(string[] Array, string Key)
     {
-        for (int i = 0; i < Array.Length; i++)
-        {
-            if (Array[i] == Key) return i;
-        }
+        for (int i = 0; i < Array.Length; i++) if (Array[i] == Key) return i;
         return -1;
     }
     private static void UpdateCacheKey(string Key, string NewText)
@@ -96,10 +119,11 @@ public class Cache
         Read[0] = New0;
         File.WriteAllLines("Cache.txt", Read);
     }
-    public static void UpdateValue(string key)
+
+    private static void UpdateValue(string key)
     {
         using var client = new HttpClient();
-        client.DefaultRequestHeaders.Add("Bearer-Token", System.IO.File.ReadAllText("api.txt"));
+        client.DefaultRequestHeaders.Add("Bearer-Token", File.ReadAllText("api.txt"));
         Update(key, client.GetStringAsync(key).Result);
         DeQueue(key);
     }
@@ -112,4 +136,5 @@ public class Cache
     }
 
     private void DispatcherTimerOnTick(object? sender, EventArgs e) => UpdateValue(File.ReadAllLines("Cache.txt")[0].Split("#DOT#")[^1]);
+    
 }

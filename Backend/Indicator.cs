@@ -23,7 +23,13 @@ namespace DotCoin3
         }
         public static double? EMA(string? id = "bitcoin", int daycount = 20)
         { 
-            if (daycount != 0) return ((double)(Fetch.EffHistory(id, daycount)?[0] ?? 1) * (2 / (daycount + 1) + (EMA(id, daycount-1) ?? 0) * (1 -(2 / (daycount + 1)))));
+            if (daycount != 1)
+            {
+                var partone = Fetch.EffHistory(id, daycount)?[0];
+                var parttwo = (2 / (daycount + 1));
+                var partthree = (EMA(id, daycount - 1) ?? 0) * (1 - (2 / (daycount + 1)));
+                return (partone * parttwo + partthree);
+            }
             return 0;
         } 
         public static double MACD(string? id = "bitcoin") => (double)(EMA(id, 12) - EMA(id, 26));
