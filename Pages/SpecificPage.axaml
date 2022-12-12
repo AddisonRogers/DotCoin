@@ -26,10 +26,16 @@
 
             <TextBlock Name="Low" Text="Error" />
             <TextBlock Name="StochasticOscillator" Text="Error" />
-            <TextBlock Name="BollingerBands" Text="Error" />
+            <TextBlock Name="BollingerBands1" Text="Error" />
+            <TextBlock Name="BollingerBands2" Text="Error" />
 
             <TextBlock Name="RSI" Text="Error" />
             <TextBlock Name="IchimokuCloud" Text="Error"/>
+            <TextBlock Name="ConversionLine" Text="Error"/>
+            <TextBlock Name="BaseLine" Text="Error"/>
+            <TextBlock Name="LeadingA" Text="Error"/>
+            <TextBlock Name="LeadingB" Text="Error"/>
+            
             <TextBlock Name="VolumeWeightedAverage" Text="Error"/>
         </StackPanel>
         

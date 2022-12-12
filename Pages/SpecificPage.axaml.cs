@@ -56,9 +56,21 @@ public partial class Specific : UserControl
         this.Find<TextBlock>("Low").Text = "2 Week Low : " + Math.Round(double.Parse(Indicator.Low(name).ToString()), 0);
         
         this.Find<TextBlock>("StochasticOscillator").Text = "Stochastic Oscillator : " + Math.Round(double.Parse(Indicator.StochasticOscillator(name).ToString()), 0);
-        this.Find<TextBlock>("BollingerBands").Text = "Bollinger Bands : " + Math.Round(double.Parse(Indicator.BollingerBands(name, 20).ToString(), CultureInfo.InvariantCulture), 0);
+        
+        (double? BOLU, double? BOLD) = Indicator.BollingerBands(name, 20);
+        this.Find<TextBlock>("BollingerBands1").Text = "BOLU : " + BOLU;
+        this.Find<TextBlock>("BollingerBands2").Text = "BOLD : " + BOLD;
+        
         this.Find<TextBlock>("RSI").Text = "RSI : " + Math.Round(double.Parse(Indicator.RSI(name).ToString()), 0);
-        this.Find<TextBlock>("IchimokuCloud").Text = "Ichimoku Cloud : " + Math.Round(double.Parse(Indicator.IchimokuCloud(name).ToString()), 0);
+
+        (double ConversionLine, double BaseLine, double LeadingA, double LeadingB) = Indicator.IchimokuCloud(name);
+        this.Find<TextBlock>("IchimokuCloud").Text = "Ichimoku Cloud :";
+        this.Find<TextBlock>("ConversionLine").Text = "    ConversionLine : " + ConversionLine;
+        this.Find<TextBlock>("BaseLine").Text = "    Base line : " + BaseLine;  
+        this.Find<TextBlock>("LeadingA").Text = "    Leading A : " + LeadingA;
+        this.Find<TextBlock>("LeadingB").Text = "    Leading B : " + LeadingB;
+        
+        //this.Find<TextBlock>("IchimokuCloud").Text = "Ichimoku Cloud : " + Math.Round(double.Parse(Indicator.IchimokuCloud(name).ToString()), 0);
         this.Find<TextBlock>("VolumeWeightedAverage").Text = "VolumeWeightedAverage : " + Math.Round(double.Parse(Indicator.VolumeWeightedAverage(name).ToString()), 0);
     }
     private void InitializeComponent()

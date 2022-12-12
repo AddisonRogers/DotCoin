@@ -108,7 +108,7 @@ namespace DotCoin3
             return Math.Sqrt(historyvarsqsum / history.Length - 1);
         }
         //Volume weighted average price
-        public static double VolumeWeightedAverage(string? id = "bitcoin") => (double)Fetch.Get(id)?["vwap24Hr"]!;
+        public static double VolumeWeightedAverage(string? id = "bitcoin") => double.Parse(Fetch.Get(id)?["vwap24Hr"]!.ToString()!);
         
     }
 }
