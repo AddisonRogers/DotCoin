@@ -24,10 +24,10 @@ namespace DotCoin3
         public static double? EMA(string? id = "bitcoin", int daycount = 20)
         { 
             if (daycount != 1)
-            {
+            { 
                 var partone = Fetch.EffHistory(id, daycount)?[0];
-                var parttwo = (2 / (daycount + 1));
-                var partthree = (EMA(id, daycount - 1) ?? 0) * (1 - (2 / (daycount + 1)));
+                double parttwo = (2 / (daycount + 1));
+                double partthree = (EMA(id, daycount - 1) ?? 0) * (1 - (2 / (daycount + 1)));
                 return (partone * parttwo + partthree);
             }
             return 0;

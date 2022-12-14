@@ -12,7 +12,7 @@
         <StyleInclude Source="LeaderBoardPageStyles.axaml" />
     </UserControl.Styles>-->
     <Grid ColumnDefinitions="*,*,4,*" RowDefinitions="*,*,*"> 
-        <DockPanel Name="CryptoInfo" PointerPressed="CryptoInfoClicked" Grid.Column="0" Grid.Row="0"> <!-- Add Modal -->
+        <DockPanel Name="CryptoInfo" Grid.Column="0" Grid.Row="0"> <!-- Add Modal -->
             <TextBlock Text="Crypto Info" DockPanel.Dock="Top"/>
             <TextBlock Name="CryptoInfoTextBlock" /> 
         </DockPanel>

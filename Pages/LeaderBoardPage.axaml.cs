@@ -138,18 +138,18 @@ public partial class LeaderBoardPage : UserControl
 
     private int NewsCount = 0;
 
-    private void CryptoInfoClicked(object? sender, PointerPressedEventArgs e)
-    {
-        var smth = new CryptoInfoModal()
-        {
-            Height = (MW.Height)/2,
-            Width = (MW.Width)/2,
-            title = "Crypto Info",
-            info = System.IO.File.ReadAllText("C:\\Users\\Addison\\RiderProjects\\DotCoin\\Pages\\CryptoInfo.txt")
-        };
-        smth.Show((Window)MW);
-        CurrentModal = smth;
-    }
+    // private void CryptoInfoClicked(object? sender, PointerPressedEventArgs e)
+    // {
+    //     var smth = new CryptoInfoModal()
+    //     {
+    //         Height = (MW.Height)/2,
+    //         Width = (MW.Width)/2,
+    //         title = "Crypto Info",
+    //         info = System.IO.File.ReadAllText("C:\\Users\\Addison\\RiderProjects\\DotCoin\\Pages\\CryptoInfo.txt")
+    //     };
+    //     smth.Show((Window)MW);
+    //     CurrentModal = smth;
+    // }
     private void InputElement_OnPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if (ModalOpen)

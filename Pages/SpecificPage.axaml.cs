@@ -50,8 +50,8 @@ public partial class Specific : UserControl
             this.Find<TextBlock>("Change24HBox").Text = "Change 24H : " + Math.Round(double.Parse(coin?["volumeUsd24Hr"]?.ToString() ?? string.Empty) / rate, 2);
         } 
         this.Find<TextBlock>("MovingAverage").Text = "Moving Average : " + Math.Round(double.Parse(Indicator.MovingAverage(name)?.ToString() ?? string.Empty), 0);
-        this.Find<TextBlock>("EMA").Text = "EMA : " + Math.Round(double.Parse(Indicator.EMA(name)?.ToString() ?? string.Empty), 0);
-        this.Find<TextBlock>("MACD").Text = "MACD : " + Math.Round(double.Parse(Indicator.MACD(name).ToString()), 0);
+        this.Find<TextBlock>("EMA").Text = "EMA : " + Math.Round(double.Parse(Indicator.EMA(name)?.ToString() ?? string.Empty), 0); //TODO issue
+        this.Find<TextBlock>("MACD").Text = "MACD : " + Math.Round(double.Parse(Indicator.MACD(name).ToString()), 0); //TODO issue
         this.Find<TextBlock>("High").Text = "2 Week High : " + Math.Round(double.Parse(Indicator.High(name).ToString()), 0);
         this.Find<TextBlock>("Low").Text = "2 Week Low : " + Math.Round(double.Parse(Indicator.Low(name).ToString()), 0);
         
@@ -133,23 +133,7 @@ public partial class Specific : UserControl
     {
         SetText();
         Chartstart();
-        
-        
-        
-        
-        
-        var dispatcherTimer = new DispatcherTimer();
-        dispatcherTimer.Tick += dispatcherTimer_Tick;
-        dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
-        dispatcherTimer.Start();
     }
-
-    private void dispatcherTimer_Tick(object? sender, EventArgs e)
-    {
-        SetText();
-        Chartstart(true);
-    }
-
     private void ToDollar_OnClick(object? sender, RoutedEventArgs e)
     {
         SetText();
